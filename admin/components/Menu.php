@@ -46,24 +46,21 @@
     <!-- Menu items will be loaded here dynamically -->
 </div>
 
-<!-- Local jQuery -->
-<script src="../bootstrap_modules/node_modules/jquery/dist/jquery.min.js"></script>
-<!-- Local Bootstrap CSS -->
-<link href="../bootstrap_modules/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/projects/_college/final/bootstrap_modules/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="/projects/_college/final/bootstrap_modules/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/projects/_college/final/bootstrap_modules/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 $(document).ready(function() {
-    // When the page is loaded, make an AJAX request to get the menu data
+    // Fetch menu items on page load
     $.ajax({
-        url: 'crud/menu/read_menu.php',  // Path to your get_menu.php file
+        url: 'crud/menu/read_menu.php',  // Ensure this path is correct
         type: 'GET',
         success: function(response) {
-            // Insert the fetched menu data into the 'menuList' div
-            $('#menuList').html(response);
+            $('#menuList').html(response); // Insert fetched HTML into #menuList
         },
         error: function() {
-            // Handle error (optional)
-            $('#menuList').html('<p>Sorry, we couldn\'t load the menu items. Please try again later.</p>');
+            $('#menuList').html('<p>Error: Unable to load menu items.</p>'); // Error fallback
         }
     });
 });

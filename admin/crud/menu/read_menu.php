@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="../../bootstrap_modules/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/projects/_college/final/bootstrap_modules/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/projects/_college/final/bootstrap_modules/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/projects/_college/final/bootstrap_modules/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: sans-serif;
@@ -45,10 +47,6 @@
             font-size: 0.9em;
         }
     </style>
-    <!-- Reference local jQuery from node_modules -->
-    <script src="../../bootstrap_modules/node_modules/jquery/dist/jquery.min.js"></script>
-    <!-- Reference local Bootstrap JS from node_modules -->
-    <script src="../../bootstrap_modules/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <main class="menu-container">
@@ -132,74 +130,73 @@
     <!-- Script for Modal and Actions -->
     <script>
     $(document).ready(function() {
-    // Handle Edit button click
-    $('.edit-link').click(function(e) {
-        e.preventDefault();
-        const menuId = $(this).data('id');
-        const menuName = $(this).data('name');
-        const description = $(this).data('description');
-        const category = $(this).data('category');
-        const image = $(this).data('image');
-
-        // Populate the modal fields
-        $('#menuId').val(menuId);
-        $('#menuName').val(menuName);
-        $('#description').val(description);
-        $('#category').val(category);
-
-        // Show current image (if exists)
-        if (image) {
-            $('#currentImageContainer').html('<img src="' + image + '" class="img-fluid" alt="Current Image" />');
-        } else {
-            $('#currentImageContainer').html('<p>No image available.</p>');
-        }
-
-        // Show the modal
-        $('#editMenuModal').modal('show');
-    });
-
-    // Submit the Edit form (including the image)
-    $('#editMenuForm').submit(function(e) {
-        e.preventDefault();
-        const formData = new FormData(this); // Use FormData to handle file upload
-
-        $.ajax({
-            url: 'crud/menu/update_menu.php',
-            type: 'POST',
-            data: formData,
-            processData: false, // Prevent jQuery from processing the data
-            contentType: false, // Prevent jQuery from setting the content type
-            success: function(response) {
-                alert(response);
-                location.reload();
-            },
-            error: function() {
-                alert('Failed to update menu item.');
-            }
-        });
-    });
-});
-
-
-        // Handle Delete button click
-        $('.delete-link').click(function(e) {
+        // Handle Edit button click
+        $('.edit-link').click(function(e) {
             e.preventDefault();
-            if (confirm('Are you sure you want to delete this menu item?')) {
-                const menuId = $(this).data('id');
-                $.ajax({
-                    url: 'crud/menu/delete_menu.php', // Ensure this is the correct path for your delete script
-                    type: 'POST',
-                    data: { id: menuId },
-                    success: function(response) {
-                        alert(response);
-                        location.reload();
-                    },
-                    error: function() {
-                        alert('Failed to delete menu item.');
-                    }
-                });
+            const menuId = $(this).data('id');
+            const menuName = $(this).data('name');
+            const description = $(this).data('description');
+            const category = $(this).data('category');
+            const image = $(this).data('image');
+
+            // Populate the modal fields
+            $('#menuId').val(menuId);
+            $('#menuName').val(menuName);
+            $('#description').val(description);
+            $('#category').val(category);
+
+            // Show current image (if exists)
+            if (image) {
+                $('#currentImageContainer').html('<img src="' + image + '" class="img-fluid" alt="Current Image" />');
+            } else {
+                $('#currentImageContainer').html('<p>No image available.</p>');
             }
+
+            // Show the modal
+            $('#editMenuModal').modal('show');
         });
+
+        // Submit the Edit form (including the image)
+        $('#editMenuForm').submit(function(e) {
+            e.preventDefault();
+            const formData = new FormData(this); // Use FormData to handle file upload
+
+            $.ajax({
+                url: 'crud/menu/update_menu.php',
+                type: 'POST',
+                data: formData,
+                processData: false, // Prevent jQuery from processing the data
+                contentType: false, // Prevent jQuery from setting the content type
+                success: function(response) {
+                    alert(response);
+                    location.reload();
+                },
+                error: function() {
+                    alert('Failed to update menu item.');
+                }
+            });
+        });
+    });
+
+    // Handle Delete button click
+    $('.delete-link').click(function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to delete this menu item?')) {
+            const menuId = $(this).data('id');
+            $.ajax({
+                url: 'crud/menu/delete_menu.php', // Ensure this is the correct path for your delete script
+                type: 'POST',
+                data: { id: menuId },
+                success: function(response) {
+                    alert(response);
+                    location.reload();
+                },
+                error: function() {
+                    alert('Failed to delete menu item.');
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>
