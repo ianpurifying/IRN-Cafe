@@ -1,3 +1,14 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    if (!isset($_SESSION['user']) || $_SESSION['user']['username'] !== 'admin' || $_SESSION['user']['email'] !== 'admin@irncafe.com') {
+        header("Location: ../index.php?page=login");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

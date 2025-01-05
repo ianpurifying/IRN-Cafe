@@ -5,6 +5,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once(__DIR__ . '/../../config.php'); // Database connection
 
+if ($_SESSION['user']['username'] === 'admin' && $_SESSION['user']['email'] === 'admin@irncafe.com') {
+    header("Location: admin/");
+    exit;
+}
+
 // Check if the user is logged in
 if (isset($_SESSION['user'])) {
     $userId = $_SESSION['user']['id'];

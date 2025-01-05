@@ -29,11 +29,16 @@ if (isset($_POST["submit"])) {
                 'username' => $user['username'],
                 'email' => $user['email']
             ];
-
-            // Redirect to the account page after successful login
-            header("Location: index.php?page=account");
+        
+            // Check if admin
+            if ($user['username'] === 'admin' && $user['email'] === 'admin@irncafe.com') {
+                header("Location: admin/index.php");
+            } else {
+                header("Location: index.php?page=account");
+            }
             exit;
-        } else {
+        }
+         else {
             $errorMessage = "Incorrect password.";
         }
     } else {
