@@ -49,7 +49,7 @@
         } elseif ($_GET['tab'] == 'users') {
             include('components/Users.php');
         } elseif ($_GET['tab'] == 'logout') {
-            echo "<h2>You have logged out.</h2>";
+            include('components/logout.php');
         }
         
         ?>
