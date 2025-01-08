@@ -48,29 +48,28 @@
     <h1>Desserts Menu</h1>
     <main class="menu-container">
     <?php
-        require_once(__DIR__ . '/../../config.php'); // Database connection
+        require_once(__DIR__ . '/../../config.php');
 
-        // SQL query to fetch only dessert category items
         $sql = "SELECT * FROM menu WHERE category = 'dessert' ORDER BY id DESC";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '<article class="menu-item">';
-
                 if (!empty($row['image'])) {
                     echo '<figure class="menu-item-image">';
                     echo '<img src="' . $row['image'] . '" alt="' . htmlspecialchars($row['menu_name']) . '">';
                     echo '</figure>';
                 }
-
                 echo '<div class="menu-item-details">';
                 echo '<h3>' . htmlspecialchars($row['menu_name']) . '</h3>';
                 echo '<p>' . nl2br(htmlspecialchars($row['description'])) . '</p>';
                 echo '<p><strong>Price:</strong> $' . htmlspecialchars($row['price']) . '</p>';
-                echo '<p class="category">Category: ' . htmlspecialchars($row['category']) . '</p>';
                 echo '</div>';
-
+                echo '<form class="add-to-cart-form" action="assets/handlers/add_to_cart.php" method="POST">'; // Updated action URL
+                echo '<input type="hidden" name="menu_id" value="' . $row['id'] . '">';
+                echo '<button type="submit">Add to Cart</button>';
+                echo '</form>';
                 echo '</article>';
             }
         } else {
