@@ -65,6 +65,7 @@
                 echo '<div class="menu-item-details">';
                 echo '<h3>' . htmlspecialchars($row['menu_name']) . '</h3>';
                 echo '<p>' . nl2br(htmlspecialchars($row['description'])) . '</p>';
+                echo '<p><strong>Price:</strong> $' . htmlspecialchars($row['price']) . '</p>'; // Added price display
                 echo '<p class="category">Category: ' . htmlspecialchars($row['category']) . '</p>';
 
                 // Bootstrap Dropdown Menu
@@ -73,7 +74,7 @@
                 echo 'Actions';
                 echo '</button>';
                 echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton' . $row['id'] . '">';
-                echo '<li><a class="dropdown-item edit-link" href="#" data-id="' . $row['id'] . '" data-name="' . htmlspecialchars($row['menu_name']) . '" data-description="' . htmlspecialchars($row['description']) . '" data-category="' . htmlspecialchars($row['category']) . '" data-image="' . $row['image'] . '">Edit</a></li>';
+                echo '<li><a class="dropdown-item edit-link" href="#" data-id="' . $row['id'] . '" data-name="' . htmlspecialchars($row['menu_name']) . '" data-description="' . htmlspecialchars($row['description']) . '" data-price="' . htmlspecialchars($row['price']) . '" data-category="' . htmlspecialchars($row['category']) . '" data-image="' . $row['image'] . '">Edit</a></li>'; // Updated to include price in Edit
                 echo '<li><a class="dropdown-item delete-link" href="#" data-id="' . $row['id'] . '">Delete</a></li>';
                 echo '</ul>';
                 echo '</div>';
@@ -108,18 +109,22 @@
                             <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                         </div>
                         <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
                             <select class="form-select" id="category" name="category" required>
                                 <option value="chicken">Chicken</option>
-                                <option value="pasta">Pasta</option>
+                                <option value="pork">Pork</option>
                                 <option value="dessert">Dessert</option>
                                 <option value="drinks">Drinks</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                        <label for="image" class="form-label">Upload Image</label>
-                        <input type="file" class="form-control" id="image" name="image">
-                    </div>
+                            <label for="image" class="form-label">Upload Image</label>
+                            <input type="file" class="form-control" id="image" name="image">
+                        </div>
                         <button type="submit" class="btn btn-primary">Save Changes</button>
                     </form>
                 </div>
@@ -136,6 +141,7 @@
             const menuId = $(this).data('id');
             const menuName = $(this).data('name');
             const description = $(this).data('description');
+            const price = $(this).data('price'); // Added price
             const category = $(this).data('category');
             const image = $(this).data('image');
 
@@ -143,6 +149,7 @@
             $('#menuId').val(menuId);
             $('#menuName').val(menuName);
             $('#description').val(description);
+            $('#price').val(price); // Populate price
             $('#category').val(category);
 
             // Show current image (if exists)

@@ -24,10 +24,14 @@
                         <label for="category" class="form-label">Category</label>
                         <select class="form-select" id="category" name="category" required>
                             <option value="chicken">Chicken</option>
-                            <option value="pasta">Pasta</option>
+                            <option value="pork">Pork</option>
                             <option value="dessert">Dessert</option>
                             <option value="drinks">Drinks</option>
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" name="price" required>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Upload Image</label>
