@@ -39,7 +39,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="list-group">
-            <button class="list-group-item list-group-item-action <?php echo (!isset($_GET['tab']) || $_GET['tab'] == 'dashboard') ? 'active' : ''; ?>" id="dashboardTab" onclick="changeTab('dashboard')">Dashboard</button>
+            <button class="list-group-item list-group-item-action <?php echo (!isset($_GET['tab']) || $_GET['tab'] == 'checkouts') ? 'active' : ''; ?>" id="checkoutsTab" onclick="changeTab('checkouts')">Checkouts</button>
             <button class="list-group-item list-group-item-action <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'sales') ? 'active' : ''; ?>" id="salesTab" onclick="changeTab('sales')">Sales</button>
             <button class="list-group-item list-group-item-action <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'menu') ? 'active' : ''; ?>" id="menuTab" onclick="changeTab('menu')">Menu</button>
             <button class="list-group-item list-group-item-action <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'users') ? 'active' : ''; ?>" id="usersTab" onclick="changeTab('users')">Users</button>
@@ -50,9 +50,9 @@
     <!-- Main Content Area -->
     <div class="main-content">
         <?php
-        // Default Tab (Dashboard)
-        if (!isset($_GET['tab']) || $_GET['tab'] == 'dashboard') {
-            include('components/Dashboard.php');
+        // Default Tab (Checkouts)
+        if (!isset($_GET['tab']) || $_GET['tab'] == 'checkouts') {
+            include('components/Checkouts.php');
         } elseif ($_GET['tab'] == 'sales') {
             include('components/Sales.php');
         } elseif ($_GET['tab'] == 'menu') {

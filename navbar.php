@@ -89,6 +89,9 @@ $currentPage = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <li class="nav-item">
                     <a class="nav-link <?= $currentPage === 'cart' ? 'active' : '' ?>" href="index.php?page=cart">Cart</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $currentPage === 'history' ? 'active' : '' ?>" href="index.php?page=history">History</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle <?= in_array($currentPage, ['account', 'login', 'registration']) ? 'active' : '' ?>" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Profile

@@ -35,6 +35,12 @@ switch ($page) {
     case 'registration':
         include 'assets/pages/registration.php';
         break;
+    case 'confirmation':
+        include 'assets/pages/confirmation.php';
+        break;
+    case 'history':
+            include 'assets/pages/history.php';
+        break;
     default:
         include 'assets/pages/home.php'; 
     

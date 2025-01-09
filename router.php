@@ -11,7 +11,9 @@ function route($page) {
         'desserts' => 'pages/desserts.php',
         'drinks' => 'pages/drinks.php',
         'login' => 'pages/login.php', 
-        'registration' => 'pages/registration.php' 
+        'registration' => 'pages/registration.php',
+        'confirmation' => 'pages/confirmation.php',
+        'history' => 'pages/history.php' 
     ];
 
     if (array_key_exists($page, $pages)) {

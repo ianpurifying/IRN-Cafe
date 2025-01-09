@@ -1,3 +1,90 @@
+<?php
+// Include the configuration file
+require_once(__DIR__ . '/../../config.php');
+
+// Start the session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Check if user is logged in
+if (!isset($_SESSION['user'])) {
+    header("Location: index.php?page=login");
+    exit;
+}
+
+// Check for Checkout Request
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
+    $email = $_SESSION['user']['email'];
+
+    // Fetch Cart Items
+    $sql = "SELECT menu.menu_name, menu.price, cart.quantity 
+            FROM cart 
+            JOIN menu ON cart.menu_id = menu.id 
+            WHERE cart.email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $orderDetails = [];
+        $totalAmount = 0;
+
+        while ($row = $result->fetch_assoc()) {
+            $itemTotal = $row['price'] * $row['quantity'];
+            $totalAmount += $itemTotal;
+            $orderDetails[] = [
+                'item' => $row['menu_name'],
+                'price' => $row['price'],
+                'quantity' => $row['quantity'],
+                'total' => $itemTotal
+            ];
+        }
+
+        // Convert order details to JSON
+        $orderDetailsJson = json_encode($orderDetails);
+
+        // Insert Order into `checkouts` Table
+        $insertSql = "INSERT INTO checkouts (email, order_details, total_amount, status) 
+                      VALUES (?, ?, ?, 'pending')";
+        $insertStmt = $conn->prepare($insertSql);
+        $insertStmt->bind_param("ssd", $email, $orderDetailsJson, $totalAmount);
+        $insertStmt->execute();
+
+        // Clear the Cart
+        $deleteSql = "DELETE FROM cart WHERE email = ?";
+        $deleteStmt = $conn->prepare($deleteSql);
+        $deleteStmt->bind_param("s", $email);
+        $deleteStmt->execute();
+
+        // Close Statements
+        $insertStmt->close();
+        $deleteStmt->close();
+
+        // Display Confirmation Message
+        $_SESSION['message'] = "Thank you for purchasing!";
+        header("Location: index.php?page=confirmation");
+        exit;
+    } else {
+        $_SESSION['message'] = "Your cart is empty!";
+        header("Location: index.php?page=cart");
+        exit;
+    }
+}
+
+// Fetch cart items for display
+$email = $_SESSION['user']['email'];
+$sql = "SELECT menu.menu_name, menu.price, cart.quantity 
+        FROM cart 
+        JOIN menu ON cart.menu_id = menu.id 
+        WHERE cart.email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,32 +184,7 @@
     </style>
 </head>
 <body>
-    <?php
-    require_once(__DIR__ . '/../../config.php');
 
-    // Start the session if not already started
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    // Check if user is logged in
-    if (!isset($_SESSION['user'])) {
-        header("Location: index.php?page=login");
-        exit;
-    }
-
-    $email = $_SESSION['user']['email'];
-
-    // Fetch cart items for the logged-in user
-    $sql = "SELECT menu.menu_name, menu.price, cart.quantity 
-            FROM cart 
-            JOIN menu ON cart.menu_id = menu.id 
-            WHERE cart.email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    ?>
 
     <header>
         <h1>Your Cart</h1>
@@ -158,8 +220,11 @@
                 </table>
                 <div class="cart-summary">
                     <p><strong>Total:</strong> $<?php echo number_format($grandTotal, 2); ?></p>
-                    <a href="index.php?page=checkout" class="btn">Checkout</a>
+                    <form method="POST">
+                        <button type="submit" name="checkout" class="btn">Checkout</button>
+                    </form>
                 </div>
+
             <?php else: ?>
                 <p>Your cart is empty. <a href="index.php?#menu">Start shopping</a>.</p>
             <?php endif; ?>
