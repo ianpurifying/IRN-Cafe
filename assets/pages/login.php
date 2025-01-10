@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start(); // Start the session only if not already started
 }
 
-require_once(__DIR__ . '/../../config.php'); // Database connection
+require 'config.php'; // Database connection
 
 if (isset($_POST["submit"])) {
     // Sanitize and validate form data

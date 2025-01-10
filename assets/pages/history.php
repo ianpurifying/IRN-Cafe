@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Include the configuration file
-require_once(__DIR__ . '/../../config.php');
+require 'config.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['user'])) {

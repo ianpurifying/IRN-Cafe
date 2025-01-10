@@ -1,6 +1,6 @@
 <?php
 // Database connection
-require_once '../../database/db_conn.php';
+include('../../database/config.php');
 
 $id = $_GET['id'];
 

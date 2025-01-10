@@ -51,7 +51,7 @@
 <body>
     <main class="menu-container">
         <?php
-        include('../../database/db_conn.php');
+        include('../../database/config.php');
         $sql = "SELECT * FROM menu ORDER BY id DESC";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {

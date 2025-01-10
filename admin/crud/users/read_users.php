@@ -1,6 +1,6 @@
 <?php
 // Database connection
-require_once '../../database/db_conn.php';
+include('../../database/config.php');
 
 // Fetch all users including hashed password and created_at
 $query = "SELECT id, first_name, last_name, username, email, password, created_at FROM users";

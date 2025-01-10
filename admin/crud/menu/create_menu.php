@@ -1,5 +1,5 @@
 <?php
-include('../../database/db_conn.php'); // Ensure the database connection is included
+include('../../database/config.php'); // Ensure the database connection is included
 
 // Check if connection was successful
 if ($conn->connect_error) {

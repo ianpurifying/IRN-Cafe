@@ -1,5 +1,5 @@
 <?php
-include('../../database/db_conn.php');
+include('../../database/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
