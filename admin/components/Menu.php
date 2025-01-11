@@ -50,9 +50,9 @@
     <!-- Menu items will be loaded here dynamically -->
 </div>
 
-<link href="/projects/_college/final/bootstrap_modules/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="/projects/_college/final/bootstrap_modules/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="/projects/_college/final/bootstrap_modules/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<link href="../modules/bootstrap/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="../modules/bootstrap/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../modules/bootstrap/node_modules/jquery/dist/jquery.min.js"></script>
 
 <script>
 $(document).ready(function() {

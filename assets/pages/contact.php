@@ -1,6 +1,6 @@
 <?php
 // Include PHPMailer
-require 'vendor/autoload.php';  
+require './modules/php_emailer/vendor/autoload.php';  
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

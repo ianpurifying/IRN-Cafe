@@ -135,12 +135,12 @@ $result = $conn->query($sql);
                                     $orderDetails = json_decode($row['order_details'], true);
                                     foreach ($orderDetails as $item) {
                                         echo '<p>' . htmlspecialchars($item['item']) . ' x ' . $item['quantity'] . 
-                                             ' @ $' . number_format($item['price'], 2) . ' = $' . number_format($item['total'], 2) . '</p>';
+                                             ' @ ₱' . number_format($item['price'], 2) . ' = ₱' . number_format($item['total'], 2) . '</p>';
                                     }
                                     ?>
                                 </div>
                             </td>
-                            <td>$<?php echo number_format($row['total_amount'], 2); ?></td>
+                            <td>₱<?php echo number_format($row['total_amount'], 2); ?></td>
                             <td><span class="status <?php echo $row['status']; ?>"><?php echo $row['status']; ?></span></td>
                             <td><?php echo date("F d, Y h:i A", strtotime($row['created_at'])); ?></td>
                             <td>

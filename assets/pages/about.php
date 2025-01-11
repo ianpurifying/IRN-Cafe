@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Refactored About Us Section</title>
   <!-- Bootstrap Icons CDN -->
-  <link href="bootstrap_modules/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="modules/bootstrap/node_modules/bootstrap/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
   <style>
     /* General CSS */

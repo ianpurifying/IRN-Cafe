@@ -99,11 +99,11 @@ if ($result->num_rows > 0) {
                                 <?php
                                 $orderDetails = json_decode($order['order_details'], true);
                                 foreach ($orderDetails as $item) {
-                                    echo htmlspecialchars($item['item']) . ' x ' . $item['quantity'] . ' @ $' . number_format($item['price'], 2) . '<br>';
+                                    echo htmlspecialchars($item['item']) . ' x ' . $item['quantity'] . ' @ ₱' . number_format($item['price'], 2) . '<br>';
                                 }
                                 ?>
                             </td>
-                            <td>$<?php echo number_format($order['total_amount'], 2); ?></td>
+                            <td>₱<?php echo number_format($order['total_amount'], 2); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

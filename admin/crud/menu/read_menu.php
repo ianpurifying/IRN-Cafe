@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="/projects/_college/final/bootstrap_modules/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/projects/_college/final/bootstrap_modules/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="/projects/_college/final/bootstrap_modules/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="../modules/bootstrap/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../modules/bootstrap/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../modules/bootstrap/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: sans-serif;
@@ -65,7 +65,7 @@
                 echo '<div class="menu-item-details">';
                 echo '<h3>' . htmlspecialchars($row['menu_name']) . '</h3>';
                 echo '<p>' . nl2br(htmlspecialchars($row['description'])) . '</p>';
-                echo '<p><strong>Price:</strong> $' . htmlspecialchars($row['price']) . '</p>'; // Added price display
+                echo '<p><strong>Price:</strong> ₱' . htmlspecialchars($row['price']) . '</p>'; // Added price display
                 echo '<p class="category">Category: ' . htmlspecialchars($row['category']) . '</p>';
 
                 // Bootstrap Dropdown Menu
