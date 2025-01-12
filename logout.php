@@ -10,6 +10,6 @@ session_unset();
 session_destroy();
 
 // Redirect to the home page after logging out
-header("Location: index.php");
+header("Location: index.php?page=login");
 exit;
 ?>

@@ -73,16 +73,23 @@ if (isset($_POST["submit"])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background: linear-gradient(to bottom, #ffefba, #ffffff);
         }
 
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .form-main {
+            display: grid;
+            place-items: center;
+            height: 88vh;
+        }
+
+        .form-con {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            height: 78vh;
+            width: 100%;
         }
 
         .form-container h2 {
@@ -108,7 +115,8 @@ if (isset($_POST["submit"])) {
     </style>
 </head>
 <body>
-    <div class="form-container">
+    <div class="form-main">
+    <div class="form-con">
         <h2>User Registration</h2>
 
         <!-- Display feedback messages -->
@@ -150,6 +158,6 @@ if (isset($_POST["submit"])) {
             <button type="submit" name="submit" class="btn btn-custom">Register</button>
         </form>
     </div>
-
+    </div>
 </body>
 </html>

@@ -53,27 +53,105 @@ if (isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffefba, #ffffff);
+            margin: 0;
+            padding: 0;
+            
+        }
+        
+        .login-main {
+            display: grid;
+            place-items: center;
+            height: 88vh;
+        }
+
+        .login-con {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            height: 42vh;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .alert {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8d7da;
+            color: #842029;
+            border: 1px solid #f5c2c7;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="login-main">
+    <div class="login-con">
         <h2>User Login</h2>
         <form method="POST" autocomplete="off">
-            <div class="mb-3">
-                <label for="username_or_email" class="form-label">Username or Email</label>
-                <input type="text" class="form-control" id="username_or_email" name="username_or_email" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" name="submit" class="btn btn-primary">Login</button>
+            <label for="username_or_email" class="form-label">Username or Email</label>
+            <input type="text" class="form-control" id="username_or_email" name="username_or_email" placeholder="Enter your username or email" required>
+
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit" name="submit" class="btn">Login</button>
         </form>
 
         <?php if (isset($errorMessage)) : ?>
-            <div class="alert alert-danger mt-3" role="alert">
+            <div class="alert" role="alert" id="alertMessage">
                 <?php echo $errorMessage; ?>
             </div>
+            <script>
+                // Remove the alert message after 500 milliseconds
+                setTimeout(() => {
+                    const alertElement = document.getElementById('alertMessage');
+                    if (alertElement) { 
+                        alertElement.style.transition = 'opacity 3s ease';
+                        alertElement.style.opacity = '0';
+                    }
+                }, 500);
+            </script>
         <?php endif; ?>
+
+    </div>
     </div>
 </body>
 </html>

@@ -20,7 +20,7 @@
 
     <title>AdminPanel</title>
     <style>
-        .container-fluid {
+        .admin-con {
             display: flex;
         }
         .sidebar {
@@ -36,7 +36,7 @@
 </head>
 <body>
 
-<div class="container-fluid">
+<div class="admin-con">
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="list-group">
@@ -61,7 +61,7 @@
         } elseif ($_GET['tab'] == 'users') {
             include('components/Users.php');
         } elseif ($_GET['tab'] == 'logout') {
-            include('components/logout.php');
+            include('components/Logout.php');
         }
         
         ?>

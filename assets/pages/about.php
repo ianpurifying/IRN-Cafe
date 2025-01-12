@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Refactored About Us Section</title>
-  <!-- Bootstrap Icons CDN -->
-  <link href="modules/bootstrap/node_modules/bootstrap/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
+  <title>About Us</title>
+  <link href="modules/bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     /* General CSS */
     * {
@@ -17,7 +15,7 @@
     }
 
     body {
-      background-color: #f9f9f9;
+      background: linear-gradient(to bottom, #ffefba, #ffffff);
       color: #333;
     }
 
@@ -91,8 +89,8 @@
       gap: 10px;
     }
 
-    .social-icons a {
-      color: #333;
+      .social-icons a {
+        color: #333;
       font-size: 1.5rem;
     }
 
@@ -205,11 +203,11 @@
         <h3>Nicole Villapando</h3>
         <p>She is our documentation specialist, ensuring every detail is recorded and presented with clarity.</p>
         <div class="social-icons">
-          <a href="https://www.facebook.com/nicole.villapando26" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.facebook.com/nicvillapando26" target="_blank"><i class="bi bi-facebook"></i></a>
         </div>
       </div>
     </div>
-
+    
     <button class="explore" onclick="location.href='index.php?page=contact'">Explore our Services</button>
   </div>
 

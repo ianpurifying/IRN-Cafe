@@ -18,6 +18,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffefba, #ffffff);
         }
 
         /* Home Section */
@@ -47,12 +48,14 @@
         .home_text h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            font-weight: bolder;
             color: rgb(203, 115, 21);
         }
 
         .home_text p {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
+            font-weight: 600;
             line-height: 1.6;
         }
 
@@ -60,7 +63,7 @@
             padding: 0.75rem 2rem;
             font-size: 1rem;
             color: #ffffff;
-            background-color: #D0852D;
+            background-color:rgb(197, 138, 71);
             border: none;
             border-radius: 20px;
             cursor: pointer;
@@ -79,7 +82,6 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #8CB1D5;
             text-align: center;
             color: #ffffff;
         }
@@ -122,7 +124,7 @@
         <div class="home_text">
             <h1>Welcome to IRN Cafe</h1>
             <p>Your cozy spot for the best coffee and chill vibes.</p>
-            <button class="btn" onclick="location.href='#menu'">Order Now</button>
+            <button class="btn" onclick="location.href='#menu'">ORDER NOW</button>
         </div>
     </section>
 

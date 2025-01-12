@@ -1,3 +1,15 @@
+<?php 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Check if the user is an admin (replace with your admin verification logic)
+    if (!isset($_SESSION['user']) || $_SESSION['user']['username'] !== 'admin' || $_SESSION['user']['email'] !== 'admin@irncafe.com') {
+        header("Location: ../index.php?page=login");
+        exit;
+    }
+?>
+
 <div>
     <h2 class="modal-title" id="registerModalLabel">User Registration</h2>
     <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>

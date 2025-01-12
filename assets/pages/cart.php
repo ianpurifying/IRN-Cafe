@@ -96,8 +96,13 @@ $result = $stmt->get_result();
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background: linear-gradient(to bottom, #ffefba, #ffffff);
             color: #333;
+        }
+
+        .cart-area {
+            display: grid;
+            height: 78vh;
         }
 
         header {
@@ -111,8 +116,8 @@ $result = $stmt->get_result();
             font-size: 1.8rem;
         }
 
-        .cart-container {
-            max-width: 800px;
+        .cart-con {
+            max-width: 500px;
             margin: 2rem auto;
             padding: 1rem;
             background: white;
@@ -184,14 +189,12 @@ $result = $stmt->get_result();
     </style>
 </head>
 <body>
-
-
     <header>
         <h1>Your Cart</h1>
     </header>
-
+    <div class="cart-area">
     <main>
-        <section class="cart-container">
+        <section class="cart-con">
             <?php if ($result->num_rows > 0): ?>
                 <table class="cart-table">
                     <thead>
@@ -234,5 +237,6 @@ $result = $stmt->get_result();
             ?>
         </section>
     </main>
+    </div>
 </body>
 </html>

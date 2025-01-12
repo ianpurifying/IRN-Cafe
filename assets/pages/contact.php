@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = htmlspecialchars($_POST['message']);
     
     // Set the recipient email address (your Gmail address)
-    $to = "sacredmind2002@gmail.com";  // Change this to your Gmail address
+    $to = "sacredmind2002@gmail.com";  
     
     // Create a new PHPMailer instance
     $mail = new PHPMailer(true);
@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';  // Use Gmail's SMTP server
         $mail->SMTPAuth = true;
-        $mail->Username = 'sacredmind2002@gmail.com';  // Your Gmail address
-        $mail->Password = 'gqfy uugq yvie nzxi';  // Your Gmail app password
+        $mail->Username = 'sacredmind2002@gmail.com';
+        $mail->Password = 'gqfy uugq yvie nzxi'; 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
@@ -59,17 +59,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
+      background: linear-gradient(to bottom, #ffefba, #ffffff);
       margin: 0;
       padding: 0;
+      
     }
 
-    .contact-container {
+    .contact-area {
+      height: 79vh;
+    }
+
+    .contact-con {
       max-width: 600px;
       margin: 50px auto;
       padding: 20px;
       background-color: white;
       border-radius: 8px;
+      height: 70vh;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
@@ -135,8 +141,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </style>
 </head>
 <body>
-
-  <div class="contact-container">
+<div class="contact-area">
+  <div class="contact-con">
     <h1>Contact Us</h1>
     <form method="post" id="contactForm">
       <label for="name">Your Name</label>
@@ -154,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Success or Error Message -->
     <div id="messageBox" class="message"></div>
   </div>
-
+</div>
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contactForm");

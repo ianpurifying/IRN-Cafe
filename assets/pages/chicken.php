@@ -7,9 +7,13 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f1f1f1;
             margin: 0;
             padding: 0;
+            height: 79vh;
+        }
+
+        .menu-area {
+            height: 78vh;
         }
 
         h1 {
@@ -20,7 +24,7 @@
             font-size: 2.5rem;
         }
 
-        .menu-container {
+        .menu-con {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
@@ -100,7 +104,8 @@
 </head>
 <body>
     <h1>Chicken Menu</h1>
-    <main class="menu-container">
+    <div class="menu-area">
+    <main class="menu-con">
         <?php
             require 'config.php';
 
@@ -133,5 +138,6 @@
             $conn->close();
         ?>
     </main>
+    </div>
 </body>
 </html>

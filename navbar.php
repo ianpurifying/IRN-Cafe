@@ -6,7 +6,7 @@
     <link href="./modules/bootstrap/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="./modules/bootstrap/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./modules/bootstrap/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Document</title>
+    <title>Navbar</title>
     <style>
         body {
             background-color: #f7f2e8;
@@ -16,7 +16,11 @@
         .navbar {
             background-color: #4b3832;
             padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000; 
         }
+
         .navbar-brand {
             display: flex;
             align-items: center;

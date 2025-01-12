@@ -33,20 +33,23 @@ if (isset($_SESSION['user'])) {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>Account Settings</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
+            background: linear-gradient(to bottom, #ffefba, #ffffff);
             margin: 0;
             padding: 0;
+        }
+
+
+        .account-area {
+            height: 80vh;
         }
 
         .accountManage {
@@ -180,44 +183,45 @@ if (isset($_SESSION['user'])) {
         }
     </style>
 </head>
-
 <body>
-    <div class="accountManage">
-        <?php if (isset($user)): ?>
-            <div class="header">
-                <h2>Welcome, <?php echo htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']); ?>!</h2>
-            </div>
-            <div class="user-info">
-                <p><strong>First Name:</strong> <?php echo htmlspecialchars($user['first_name']); ?></p>
-                <p><strong>Last Name:</strong> <?php echo htmlspecialchars($user['last_name']); ?></p>
-                <p><strong>Username:</strong> <?php echo htmlspecialchars($user['username']); ?></p>
-                <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
-                <p><strong>Account Created:</strong> <?php echo date("F j, Y", strtotime($user['created_at'])); ?></p>
-            </div>
+    <div class="account-area">
+        <div class="accountManage">
+            <?php if (isset($user)): ?>
+                <div class="header">
+                    <h2>Welcome, <?php echo htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']); ?>!</h2>
+                </div>
+                <div class="user-info">
+                    <p><strong>First Name:</strong> <?php echo htmlspecialchars($user['first_name']); ?></p>
+                    <p><strong>Last Name:</strong> <?php echo htmlspecialchars($user['last_name']); ?></p>
+                    <p><strong>Username:</strong> <?php echo htmlspecialchars($user['username']); ?></p>
+                    <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
+                    <p><strong>Account Created:</strong> <?php echo date("F j, Y", strtotime($user['created_at'])); ?></p>
+                </div>
 
-            <!-- Edit Profile Button -->
-            <button class="btn-edit" id="editProfileBtn">Edit Profile</button>
-            <a href="./logout.php" class="btn-logout">Logout</a>
-        <?php else: ?>
-            <div class="alert" role="alert">
-                <?php echo isset($errorMessage) ? $errorMessage : 'Something went wrong!'; ?>
-            </div>
-        <?php endif; ?>
-    </div>
+                <!-- Edit Profile Button -->
+                <button class="btn-edit" id="editProfileBtn">Edit Profile</button>
+                <a href="./logout.php" class="btn-logout">Logout</a>
+            <?php else: ?>
+                <div class="alert" role="alert">
+                    <?php echo isset($errorMessage) ? $errorMessage : 'Something went wrong!'; ?>
+                </div>
+            <?php endif; ?>
+        </div>
 
-    <!-- Modal for Editing Profile -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <h2>Edit Profile</h2>
-            <form action="assets/handlers/edit_profile.php" method="POST">
-                <input type="text" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>" placeholder="First Name" required>
-                <input type="text" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>" placeholder="Last Name" required>
-                <input type="text" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" placeholder="Username" required>
-                <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" placeholder="Email" required>
-                <input type="password" name="password" placeholder="New Password (Leave empty to keep current)">
-                <button type="submit" class="btn-save">Save Changes</button>
-            </form>
+        <!-- Modal for Editing Profile -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2>Edit Profile</h2>
+                <form action="assets/handlers/edit_profile.php" method="POST">
+                    <input type="text" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>" placeholder="First Name" required>
+                    <input type="text" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>" placeholder="Last Name" required>
+                    <input type="text" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" placeholder="Username" required>
+                    <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="New Password (Leave empty to keep current)">
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -245,5 +249,4 @@ if (isset($_SESSION['user'])) {
         }
     </script>
 </body>
-
 </html>

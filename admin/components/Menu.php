@@ -1,3 +1,15 @@
+<?php 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (!isset($_SESSION['user']) || $_SESSION['user']['username'] !== 'admin' || $_SESSION['user']['email'] !== 'admin@irncafe.com') {
+        header("Location: ../index.php?page=login");
+        exit;
+    }
+        
+?>
+
 <div>
     <h2>Menu Management</h2>
     <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#addMenuModal">Add Menu</button>
