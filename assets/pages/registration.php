@@ -156,6 +156,10 @@ if (isset($_POST["submit"])) {
                 <div class="invalid-feedback">Passwords do not match.</div>
             </div>
             <button type="submit" name="submit" class="btn btn-custom">Register</button>
+            <div style="margin-top: 10px; text-align: center;">
+                    <span>Already have an account? </span>
+                    <a href="index.php?page=login" class="signup-link">Login</a>
+                </div>
         </form>
     </div>
     </div>

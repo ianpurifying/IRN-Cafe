@@ -1,0 +1,16 @@
+1. Start XAMPP:
+    - Open the XAMPP.
+    - Click the Start button of Apache and MySQL.
+
+2. Access phpMyAdmin:
+    - Go to "http://localhost/phpmyadmin/" in your browser, or just press the Admin button right-next to the Stop button.
+
+3. Create Database:
+    - On the left side, press New.
+    - Enter the database name which is "irn_cafe".
+    - Click Create.
+
+4. Import SQL File:
+    - Select the database created from the left sidebar.
+    - Click Import, then Choose File.
+    - Select the SQL file (irn_cafe.sql) and click Import.

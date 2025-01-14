@@ -123,35 +123,39 @@ if (isset($_POST["submit"])) {
 </head>
 <body>
     <div class="login-main">
-    <div class="login-con">
-        <h2>User Login</h2>
-        <form method="POST" autocomplete="off">
-            <label for="username_or_email" class="form-label">Username or Email</label>
-            <input type="text" class="form-control" id="username_or_email" name="username_or_email" placeholder="Enter your username or email" required>
+        <div class="login-con">
+            <h2>User Login</h2>
+            <form method="POST" autocomplete="off">
+                <label for="username_or_email" class="form-label">Username or Email</label>
+                <input type="text" class="form-control" id="username_or_email" name="username_or_email" placeholder="Enter your username or email" required>
 
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
 
-            <button type="submit" name="submit" class="btn">Login</button>
-        </form>
+                <button type="submit" name="submit" class="btn">Login</button>
+                
+                <div style="margin-top: 10px; text-align: center;">
+                    <span>Don't have an account? </span>
+                    <a href="index.php?page=registration" class="signup-link">Sign Up</a>
+                </div>
+            </form>
 
-        <?php if (isset($errorMessage)) : ?>
-            <div class="alert" role="alert" id="alertMessage">
-                <?php echo $errorMessage; ?>
-            </div>
-            <script>
-                // Remove the alert message after 500 milliseconds
-                setTimeout(() => {
-                    const alertElement = document.getElementById('alertMessage');
-                    if (alertElement) { 
-                        alertElement.style.transition = 'opacity 3s ease';
-                        alertElement.style.opacity = '0';
-                    }
-                }, 500);
-            </script>
-        <?php endif; ?>
-
-    </div>
+            <?php if (isset($errorMessage)) : ?>
+                <div class="alert" role="alert" id="alertMessage">
+                    <?php echo $errorMessage; ?>
+                </div>
+                <script>
+                    // Remove the alert message after 500 milliseconds
+                    setTimeout(() => {
+                        const alertElement = document.getElementById('alertMessage');
+                        if (alertElement) { 
+                            alertElement.style.transition = 'opacity 3s ease';
+                            alertElement.style.opacity = '0';
+                        }
+                    }, 500);
+                </script>
+            <?php endif; ?>
+        </div>
     </div>
 </body>
 </html>
