@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['menu_id'])) {
     // Check if the user is logged in
     if (!isset($_SESSION['user']) || !isset($_SESSION['user']['email'])) {
         // Redirect to login page or display an error
-        header("Location: ../../index.php?page=login");
+        echo "<script>window.location.href = '../../index.php?page=login';</script>";
         exit;
     }
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['menu_id'])) {
     }
 
     // Redirect to cart page
-    header("Location: ../../index.php?page=cart");
+    echo "<script>window.location.href = '../../index.php?page=cart';</script>";
     exit;
 }
 ?>

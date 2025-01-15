@@ -5,7 +5,7 @@
 
     // Check if the user is an admin (replace with your admin verification logic)
     if (!isset($_SESSION['user']) || $_SESSION['user']['username'] !== 'admin' || $_SESSION['user']['email'] !== 'admin@irncafe.com') {
-        header("Location: ../index.php?page=login");
+        echo "<script>window.location.href = '../index.php?page=login';</script>";
         exit;
     }
 ?>

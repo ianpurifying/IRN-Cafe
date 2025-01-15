@@ -109,6 +109,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $userLoggedIn = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 'home';
 ?>
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const navbar = document.querySelector(".navbar");

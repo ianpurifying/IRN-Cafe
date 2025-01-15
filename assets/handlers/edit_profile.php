@@ -37,7 +37,7 @@ if (isset($_SESSION['user'])) {
             $_SESSION['user']['last_name'] = $lastName;
             $_SESSION['user']['username'] = $username;
             $_SESSION['user']['email'] = $email;
-            header("Location: ../../index.php?page=account");
+            echo "<script>window.location.href = '../../index.php?page=account';</script>";
             exit;
         } else {
             echo "Error updating profile.";

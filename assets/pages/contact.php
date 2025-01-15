@@ -49,98 +49,89 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #ffefba, #ffffff);
+    margin: 0;
+    padding: 0;
+    
+  }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #ffefba, #ffffff);
-      margin: 0;
-      padding: 0;
-      
-    }
+  .contact-area {
+    height: 79vh;
+  }
 
-    .contact-area {
-      height: 79vh;
-    }
+  .contact-con {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    height: 70vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-    .contact-con {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      height: 70vh;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
 
-    h1 {
-      text-align: center;
-      color: #333;
-    }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
+  input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
 
-    input[type="text"], input[type="email"], textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-    }
+  textarea {
+    resize: vertical;
+  }
 
-    textarea {
-      resize: vertical;
-    }
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+  }
 
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 18px;
-      cursor: pointer;
-    }
+  button:hover {
+    background-color: #45a049;
+  }
 
-    button:hover {
-      background-color: #45a049;
-    }
+  .message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+  }
 
-    .message {
-      text-align: center;
-      margin-top: 20px;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      display: none; /* Hidden by default */
-    }
+  .message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
 
-    .message.success {
-      background-color: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-
-    .message.error {
-      background-color: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-  </style>
-</head>
-<body>
+  .message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+</style>
 <div class="contact-area">
   <div class="contact-con">
     <h1>Contact Us</h1>
@@ -184,6 +175,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   });
 </script>
 
-
-</body>
-</html>
