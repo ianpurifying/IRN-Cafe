@@ -1,9 +1,4 @@
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-    }
 
     h1 {
         text-align: center;
@@ -94,7 +89,7 @@
         font-size: 1.2rem;
     }
 </style>
-<h1>Drinks Menu</h1>
+<h1>Drinks</h1>
 <div class="menu-area">
 <main class="menu-con">
     <?php

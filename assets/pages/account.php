@@ -34,13 +34,6 @@ if (isset($_SESSION['user'])) {
 }
 ?>
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(to bottom, #ffefba, #ffffff);
-        margin: 0;
-        padding: 0;
-    }
-
 
     .account-area {
         height: 80vh;
@@ -58,12 +51,6 @@ if (isset($_SESSION['user'])) {
     .header {
         text-align: center;
         margin-bottom: 20px;
-    }
-
-    h2 {
-        font-size: 32px;
-        font-weight: 600;
-        color: #333;
     }
 
     .user-info p {

@@ -35,28 +35,89 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Content
         $mail->isHTML(false);  // Set email format to plain text
-        $mail->Subject = 'New Message from Contact Form';
-        $mail->Body    = "You have received a new message from the contact form on your website.\n\n" .
-                         "Name: $name\n" .
-                         "Email: $email\n" .
-                         "Message:\n$message\n";
+        $mail->Subject = 'New Message from IRN Cafe';
+        $mail->Body = "
+        <html>
+        <head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f5f5f5;
+                    color: #444;
+                    margin: 0;
+                    padding: 0;
+                }
+                .container {
+                    max-width: 600px;
+                    margin: 40px auto;
+                    padding: 20px;
+                    background: #ffffff;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                    border: 1px solid #eaeaea;
+                }
+                .header {
+                    background-color: #6a4a0a;
+                    color: #ffffff;
+                    padding: 15px;
+                    text-align: center;
+                    border-radius: 8px 8px 0 0;
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+                .content {
+                    font-size: 16px;
+                    line-height: 1.6;
+                    padding: 20px;
+                }
+                .content p {
+                    margin: 0 0 10px;
+                }
+                .footer {
+                    text-align: center;
+                    font-size: 12px;
+                    color: #999;
+                    margin-top: 20px;
+                    padding-top: 10px;
+                    border-top: 1px solid #eaeaea;
+                }
+                .footer a {
+                    color: #6a4a0a;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                .footer a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <div class='header'>New Message from IRN Cafe</div>
+                <div class='content'>
+                    <p><strong>Name:</strong> $name</p>
+                    <p><strong>Email:</strong> $email</p>
+                    <p><strong>Message:</strong></p>
+                    <p>$message</p>
+                </div>
+                <div class='footer'>
+                    IRN Cafe | © " . date('Y') . " | <a href='https://web.facebook.com/ianpurifying'>Visit Our Website</a>
+                </div>
+            </div>
+        </body>
+        </html>";
+    $mail->AltBody = "New Contact Form Message\n\nName: $name\nEmail: $email\nMessage:\n$message";
 
-        // Send the email
-        $mail->send();
-        $response = "success"; // Mark as success
-    } catch (Exception $e) {
-        $response = "error"; // Mark as error
-    }
+    // Send the email
+    $mail->send();
+    $response = "success";
+} catch (Exception $e) {
+    error_log("Email could not be sent. Error: {$mail->ErrorInfo}");
+    $response = "error";
+}
 }
 ?>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #ffefba, #ffffff);
-    margin: 0;
-    padding: 0;
-    
-  }
 
   .contact-area {
     height: 79vh;
@@ -68,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     padding: 20px;
     background-color: white;
     border-radius: 8px;
-    height: 70vh;
+    height: 60vh;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
@@ -77,11 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     color: #333;
   }
 
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
 
   input[type="text"], input[type="email"], textarea {
     width: 100%;
@@ -96,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     resize: vertical;
   }
 
-  button {
+  .contact-con button {
     width: 100%;
     padding: 10px;
     background-color: #4CAF50;
@@ -136,14 +192,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="contact-con">
     <h1>Contact Us</h1>
     <form method="post" id="contactForm">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="message">Your Message</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+      <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
 
       <button type="submit">Send Message</button>
     </form>
@@ -152,7 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div id="messageBox" class="message"></div>
   </div>
 </div>
-  <script>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contactForm");
     const messageBox = document.getElementById("messageBox");

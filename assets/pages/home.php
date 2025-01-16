@@ -1,5 +1,4 @@
 <style>
-    /* Import custom font: Rubik Vinyl */
     @font-face {
         font-family: "Rubik Vinyl";
         src: url("assets/fonts/RubikVinyl-Regular.woff") format("woff"),
@@ -7,14 +6,6 @@
         font-weight: 400;
         font-style: normal;
     }
-
-    /* Reset body margin and apply default font */
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to bottom, #ffefba, #ffffff);
-    }
-
     /* Home Section */
     #home {
         display: flex;
@@ -24,7 +15,6 @@
         text-align: center;
         background: url('assets/img/homepage_img.jpg') no-repeat center center;
         background-size: cover;
-        font-family: "Rubik Vinyl", Arial, sans-serif;
         position: relative;
     }
 
@@ -44,6 +34,7 @@
         margin-bottom: 1rem;
         font-weight: bolder;
         color: rgb(203, 115, 21);
+        font-family: "Rubik Vinyl", Arial, sans-serif !important;
     }
 
     .home_text p {
@@ -83,8 +74,8 @@
     #menu h1 {
         font-size: 2.5rem;
         margin-bottom: 2rem;
-        font-family: "Rubik Vinyl", Arial, sans-serif;
         color: rgb(203, 115, 21);
+        font-family: "Rubik Vinyl", Arial, sans-serif !important;
     }
 
     .menu-buttons {

@@ -6,15 +6,6 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : "Purchase someth
 unset($_SESSION['message']);
 ?>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(to bottom, #ffefba, #ffffff);
-        height: 100vh;
-        color: #333;
-    }
-
     .con-area {
         height: 88vh;
         display: grid;

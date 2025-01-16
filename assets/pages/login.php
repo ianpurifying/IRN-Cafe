@@ -47,13 +47,6 @@ if (isset($_POST["submit"])) {
 }
 ?>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to bottom, #ffefba, #ffffff);
-        margin: 0;
-        padding: 0;
-        
-    }
     
     .login-main {
         display: grid;
@@ -67,18 +60,11 @@ if (isset($_POST["submit"])) {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
         max-width: 600px;
-        height: 42vh;
+        height: 36vh;
         width: 100%;
     }
-    h2 {
+    .login-con h2 {
         text-align: center;
-        margin-bottom: 20px;
-        color: #333;
-    }
-    .form-label {
-        font-weight: bold;
-        margin-bottom: 5px;
-        display: block;
     }
     .form-control {
         width: 100%;
@@ -117,10 +103,7 @@ if (isset($_POST["submit"])) {
     <div class="login-con">
         <h2>User Login</h2>
         <form method="POST" autocomplete="off">
-            <label for="username_or_email" class="form-label">Username or Email</label>
             <input type="text" class="form-control" id="username_or_email" name="username_or_email" placeholder="Enter your username or email" required>
-
-            <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
 
             <button type="submit" name="submit" class="btn">Login</button>

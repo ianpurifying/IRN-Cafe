@@ -85,14 +85,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 ?>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(to bottom, #ffefba, #ffffff);
-        color: #333;
-    }
-
     .cart-area {
         display: grid;
         height: 78vh;

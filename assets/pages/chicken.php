@@ -1,11 +1,4 @@
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        height: 79vh;
-    }
-
     .menu-area {
         height: 78vh;
     }
@@ -95,7 +88,7 @@
         font-size: 1.2rem;
     }
 </style>
-<h1>Chicken Menu</h1>
+<h1>Chicken</h1>
 <div class="menu-area">
 <main class="menu-con">
     <?php

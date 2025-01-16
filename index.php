@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+    @font-face {
+        font-family: "Sour Gummy";
+        src: url("assets/fonts/Sour_Gummy/static/SourGummy-Bold.woff2") format("woff2"),
+            url("assets/fonts/Sour_Gummy/static/SourGummy-Bold.woff") format("woff"),
+            url("assets/fonts/Sour_Gummy/static/SourGummy-Bold.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    body {
+        font-family: "Sour Gummy", Arial, sans-serif !important;
+        font-size: 16px; /* Ensures consistent font size */
+        line-height: 1.5; /* Improves readability */
+        color: #333; /* A neutral text color */
+        background: linear-gradient(to bottom, #ffefba, #ffffff); /* Light gradient for a soft effect */
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased; /* Smoothens font rendering */
+        -moz-osx-font-smoothing: grayscale; /* For better font appearance */
+    }
+
+    </style>
 </head>
 <body>
 <?php

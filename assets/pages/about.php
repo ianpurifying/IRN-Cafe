@@ -1,17 +1,5 @@
 <link href="modules/bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 <style>
-/* General CSS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
-}
-
-body {
-  background: linear-gradient(to bottom, #ffefba, #ffffff);
-  color: #333;
-}
 
 .bigContainer {
   padding: 50px 20px;
@@ -31,6 +19,7 @@ body {
   font-size: 1.2rem;
   margin-bottom: 40px;
   color: #666;
+  font-family: 'Nunito', sans-serif;
 }
 
 .team-container {
@@ -73,6 +62,7 @@ body {
   font-size: 1rem;
   color: #666;
   margin: 0 15px 15px;
+  font-family: 'Nunito', sans-serif;
 }
 
 .team-card .social-icons {
