@@ -42,7 +42,6 @@ $result = $stmt->get_result();
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        min-height: 80vh;
         padding: 2rem 1rem;
     }
 
@@ -146,7 +145,7 @@ $result = $stmt->get_result();
             <?php endwhile; ?>
         <?php else: ?>
             <div class="no-history">
-                <p>No order history available. <a href="index.php?#menu">Place your first order!</a></p>
+                <p>No order history available. <a href="index.php">Place your first order!</a></p>
             </div>
         <?php endif; ?>
         <?php 

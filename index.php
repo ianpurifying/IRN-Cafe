@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" href="assets/img/logo.jpg" type="image/jpeg">
+    <title>IRN Cafe</title>
+    <!-- Dependencies -->
+    <link href="./modules/bootstrap/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./modules/bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="./modules/bootstrap/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./modules/bootstrap/node_modules//jquery/dist/jquery.min.js"></script>
+    
     <style>
     @font-face {
         font-family: "Sour Gummy";
@@ -14,70 +21,46 @@
         font-style: normal;
     }
 
+    /* Base body style */
     body {
         font-family: "Sour Gummy", Arial, sans-serif !important;
-        font-size: 16px; /* Ensures consistent font size */
-        line-height: 1.5; /* Improves readability */
-        color: #333; /* A neutral text color */
-        background: linear-gradient(to bottom, #ffefba, #ffffff); /* Light gradient for a soft effect */
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background: linear-gradient(to bottom, #ffefba, #ffffff);
         margin: 0;
         padding: 0;
-        -webkit-font-smoothing: antialiased; /* Smoothens font rendering */
-        -moz-osx-font-smoothing: grayscale; /* For better font appearance */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    /* Main content style */
+    main {
+        flex-grow: 1;
     }
 
     </style>
 </head>
 <body>
-<?php
-include 'navbar.php'; // Include the navbar
+    <?php
+        define('ASSET_PATH', 'assets/');
+        define('PAGE_PATH', __DIR__ . '/assets/pages/');
 
-// Simple router logic
-$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+        include 'route.php'; // Dynamic Router
+        include 'navbar.php'; // Navigation bar
+    ?>
 
-switch ($page) {
-    case 'about':
-        include 'assets/pages/about.php';
-        break;
-    case 'account':
-        include 'assets/pages/account.php';
-        break;
-    case 'cart':
-        include 'assets/pages/cart.php';
-        break;
-    case 'chicken':
-        include 'assets/pages/chicken.php';
-        break;
-    case 'pork':
-        include 'assets/pages/pork.php';
-        break;
-    case 'desserts':
-        include 'assets/pages/desserts.php';
-        break;
-    case 'drinks':
-        include 'assets/pages/drinks.php';
-        break;
-    case 'contact':
-        include 'assets/pages/contact.php';
-        break;
-    case 'login':
-        include 'assets/pages/login.php';
-        break;
-    case 'registration':
-        include 'assets/pages/registration.php';
-        break;
-    case 'confirmation':
-        include 'assets/pages/confirmation.php';
-        break;
-    case 'history':
-            include 'assets/pages/history.php';
-        break;
-    default:
-        include 'assets/pages/home.php'; 
-    
-}
+    <!-- Main content section -->
+    <main>
+        <?php
+            $page = $_GET['page'] ?? 'home'; // Default page
+            route($page); // Load the appropriate page
+        ?>
+    </main>
 
-include 'footer.php';
-?>
+    <?php
+        include 'footer.php'; // Footer
+    ?>
 </body>
 </html>

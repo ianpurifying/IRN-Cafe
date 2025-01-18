@@ -59,7 +59,7 @@ if (isset($_POST["submit"])) {
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
-        max-width: 600px;
+        max-width: 500px;
         height: 36vh;
         width: 100%;
     }

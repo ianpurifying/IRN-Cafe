@@ -6,11 +6,15 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : "Purchase someth
 unset($_SESSION['message']);
 ?>
 <style>
+    /* Centering the .con-area using Flexbox */
     .con-area {
-        height: 88vh;
-        display: grid;
-        place-items: center;
+        display: flex;
+        justify-content: center; /* Centers horizontally */
+        align-items: center;     /* Centers vertically */
+        height: 80vh;           /* Full viewport height */
+        background-color: #f9f9f9; /* Optional background color */
     }
+
     .con {
         text-align: center;
         background: #ffffff;
@@ -20,12 +24,14 @@ unset($_SESSION['message']);
         max-width: 500px;
         width: 100%;
     }
+
     h1 {
         font-size: 24px;
         margin-bottom: 20px;
         color: #444;
     }
-    .con:a {
+
+    .con a {
         display: inline-block;
         text-decoration: none;
         color: #ffffff;
@@ -35,13 +41,15 @@ unset($_SESSION['message']);
         font-size: 16px;
         transition: background 0.3s ease;
     }
-    con:a:hover {
+
+    .con a:hover {
         background: #0056b3;
     }
 </style>
+
 <div class="con-area">
     <div class="con">
         <h1><?php echo htmlspecialchars($message); ?></h1>
-        <a href="index.php?#menu">Continue Shopping</a>
+        <a href="index.php">Continue Shopping</a>
     </div>
 </div>

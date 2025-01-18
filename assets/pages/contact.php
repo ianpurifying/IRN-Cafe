@@ -118,11 +118,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <style>
-
   .contact-area {
-    height: 79vh;
+    height: 88vh; 
   }
-
   .contact-con {
     max-width: 600px;
     margin: 50px auto;

@@ -36,7 +36,7 @@ if (isset($_SESSION['user'])) {
 <style>
 
     .account-area {
-        height: 80vh;
+        height: 88vh;
     }
 
     .accountManage {

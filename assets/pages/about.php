@@ -1,4 +1,4 @@
-<link href="modules/bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 <style>
 
 .bigContainer {

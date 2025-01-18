@@ -35,5 +35,4 @@ if (!$conn->set_charset("utf8mb4")) {
     die("Oops! Something went wrong while setting up the database.");
 }
 
-// Connection successful
 ?>

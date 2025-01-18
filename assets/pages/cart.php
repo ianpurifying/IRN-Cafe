@@ -212,7 +212,7 @@ $result = $stmt->get_result();
             </div>
 
         <?php else: ?>
-            <p>Your cart is empty. <a href="index.php?#menu">Start shopping</a>.</p>
+            <p>Your cart is empty. <a href="index.php">Start shopping</a>.</p>
         <?php endif; ?>
         <?php 
         $stmt->close();

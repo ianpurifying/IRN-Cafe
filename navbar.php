@@ -1,7 +1,3 @@
-<!-- External Dependencies -->
-<link href="./modules/bootstrap/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="./modules/bootstrap/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-<script src="./modules/bootstrap/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
     @font-face {
@@ -94,13 +90,31 @@
         }
     }
 </style>
-
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-$userLoggedIn = $_SESSION['user'] ?? null;
-$currentPage = $_GET['page'] ?? 'home';
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $userLoggedIn = $_SESSION['user'] ?? null;
+
+    function renderNavbar($currentPage) {
+        $navLinks = [
+            'home' => 'Home',
+            'about' => 'About',
+            'menu' => 'Menu',
+            'contact' => 'Contact',
+            'history' => 'History',
+            'cart' => '<i class="bi bi-cart"></i>',
+        ];
+    
+        foreach ($navLinks as $page => $label) {
+            $activeClass = $currentPage === $page ? 'active' : '';
+            $href = "index.php?page=$page";
+            echo "<li class='nav-item'><a class='nav-link $activeClass' href='$href'>$label</a></li>";
+        }
+    }
+    
+    $currentPage = $_GET['page'] ?? 'home';
 ?>
 
 <script>
@@ -122,7 +136,7 @@ $currentPage = $_GET['page'] ?? 'home';
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand" href="index.php">
-            <img src="assets/img/logo.jpg" alt="IRN Cafe Logo">
+            <img src="<?= ASSET_PATH ?>img/logo.jpg" alt="IRN Cafe Logo">
             <h2>IRN Cafe</h2>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,23 +144,9 @@ $currentPage = $_GET['page'] ?? 'home';
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <?php
-                $navLinks = [
-                    'home' => 'Home',
-                    'about' => 'About',
-                    'menu' => 'Menu',
-                    'contact' => 'Contact',
-                    'history' => 'History',
-                    'cart' => '<i class="bi bi-cart"></i>'
-                ];
+                <?php renderNavbar($currentPage); ?>
 
-                foreach ($navLinks as $page => $label) {
-                    $activeClass = $currentPage === $page ? 'active' : '';
-                    $href = $page === 'menu' ? "index.php?#menu" : "index.php?page=$page";
-                    echo "<li class='nav-item'><a class='nav-link $activeClass' href='$href'>$label</a></li>";
-                }
-                ?>
-
+                <!-- Profile Dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle <?= in_array($currentPage, ['account', 'login', 'registration']) ? 'active' : '' ?>" 
                         href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
