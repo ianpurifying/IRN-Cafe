@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
             if ($user['username'] === 'admin' && $user['email'] === 'admin@irncafe.com') {
                 echo "<script>window.location.href = 'admin/index.php';</script>";
             } else {
-                echo "<script>window.location.href = 'index.php?page=account';</script>";
+                echo "<script>window.location.href = 'index.php?page=home';</script>";
             }
             exit;
         }

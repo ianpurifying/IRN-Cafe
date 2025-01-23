@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Execute the query
     if ($stmt->execute()) {
         // Redirect back to the Menu tab after saving the menu item
-        header('Location: ../../index.php?tab=menu');
+        header('Location: ../../index.php?page=menu');
         exit(); // Always call exit() after a header redirect to ensure the script stops executing
     } else {
         echo "Error: " . $stmt->error;

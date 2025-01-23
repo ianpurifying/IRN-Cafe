@@ -46,12 +46,45 @@
     }
 
     .home_text h1 {
-        font-size: 3rem;
+
+    }
+
+    /* Add a typewriter effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.home_text h1 {
+    font-size: 3rem;
         margin-bottom: 1.5rem;
         font-weight: bolder;
         color: rgb(203, 115, 21);
         font-family: "Rubik Vinyl", Arial, sans-serif !important;
-    }
+    
+        overflow: hidden; /* Ensures the text is clipped */
+  white-space: nowrap; /* Prevents text from wrapping */
+  border-right: 3px solid #333; /* Adds the cursor effect */
+  width: 0; /* Start width at 0 */
+  animation: typing 2s steps(30) 1s forwards; /* Adjust animation speed and steps */
+}
+
+/* Optional: Adjust the cursor to simulate typing effect */
+.home_text h1::after {
+  content: '|'; /* Simulates the blinking cursor */
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 
     .home_text p {
         font-size: 1.3rem;
@@ -96,4 +129,10 @@
         <p>Your cozy spot for the best coffee and chill vibes. Indulge in your favorite brew and unwind with us!</p>
         <button class="btn" onclick="location.href='index.php?page=menu'">ORDER NOW</button>
     </div>
+
+   
+</section>
+
+<section id='about'>
+<?php include PAGE_PATH . 'about.php';?>
 </section>

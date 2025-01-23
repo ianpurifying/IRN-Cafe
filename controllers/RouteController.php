@@ -3,10 +3,6 @@ class RouteController {
     public function home() {
         include PAGE_PATH . 'home.php';
     }
-    
-    public function about() {
-        include PAGE_PATH . 'about.php';
-    }
 
     public function contact() {
         include PAGE_PATH . 'contact.php';

@@ -11,8 +11,10 @@
 ?>
 
 <div>
-    <h2>Menu Management</h2>
-    <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#addMenuModal">Add Menu</button>
+    <div class="d-flex flex-column align-items-center text-center">
+        <h2 class="modal-title mb-3" id="menuModalLabel">Menu Management</h2>
+        <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#addMenuModal">Add Menu</button>
+    </div>
     
     <!-- Modal for Adding Menu -->
     <div class="modal fade" id="addMenuModal" tabindex="-1" aria-labelledby="addMenuModalLabel" aria-hidden="true">

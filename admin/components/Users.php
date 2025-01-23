@@ -11,8 +11,10 @@
 ?>
 
 <div>
-    <h2 class="modal-title" id="registerModalLabel">User Registration</h2>
-    <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+    <div class="d-flex flex-column align-items-center text-center">
+        <h2 class="modal-title mb-3" id="registerModalLabel">User Registration</h2>
+        <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+    </div>
 
     <!-- Registration Modal -->
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
@@ -133,9 +135,50 @@
     </div>
 </div>
 
-
 <script>
-// Fetch users and render to table
+const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const validatePasswordStrength = (password) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+
+const feedbackMessage = document.getElementById('feedbackMessage');
+const form = document.getElementById('registrationForm');
+const usernameField = document.getElementById('username');
+const emailField = document.getElementById('email');
+const passwordField = document.getElementById('password');
+const confirmPasswordField = document.getElementById('confirmPassword');
+
+const editFeedbackMessage = document.getElementById('editFeedbackMessage');
+const editForm = document.getElementById('editUserForm');
+const editUsernameField = document.getElementById('editUsername');
+const editEmailField = document.getElementById('editEmail');
+const editPasswordField = document.getElementById('editPassword');
+const editConfirmPasswordField = document.getElementById('editConfirmPassword');
+
+// Create User
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (form.checkValidity()) {
+        const formData = new FormData(form);
+        fetch('crud/users/create_users.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                displayFeedback(data.message, 'success');
+                form.reset();
+                setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide(), 2000);
+            } else {
+                displayFeedback(data.message, 'danger');
+            }
+        })
+        .catch(() => displayFeedback('An unexpected error occurred.', 'danger'));
+    } else {
+        form.classList.add('was-validated');
+    }
+});
+
+// Fetch and Display User
 const fetchUsers = () => {
     fetch('crud/users/read_users.php')
         .then(response => response.json())
@@ -165,6 +208,48 @@ const fetchUsers = () => {
 };
 document.addEventListener('DOMContentLoaded', fetchUsers);
 
+// Edit and Update user
+const editUser = (userId) => {
+    fetch(`crud/users/read_user.php?id=${userId}`)
+        .then(response => response.json())
+        .then(user => {
+            document.getElementById('editUserId').value = user.id;
+            document.getElementById('editFirstName').value = user.first_name;
+            document.getElementById('editLastName').value = user.last_name;
+            document.getElementById('editUsername').value = user.username;
+            document.getElementById('editEmail').value = user.email;
+            document.getElementById('editPassword').value = user.password;
+            
+            // Show the modal
+            const modal = new bootstrap.Modal(document.getElementById('editModal'));
+            modal.show();
+        })
+        .catch(error => console.error('Error fetching user data:', error));
+};
+
+editForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (editForm.checkValidity()) {
+        const formData = new FormData(editForm);
+        fetch('crud/users/update_users.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                displayEditFeedback(data.message, 'success');
+                setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('editModal')).hide(), 2000);
+            } else {
+                displayEditFeedback(data.message, 'danger');
+            }
+        })
+        .catch(() => displayEditFeedback('An unexpected error occurred.', 'danger'));
+    } else {
+        editForm.classList.add('was-validated');
+    }
+});
+
 // Delete user
 const deleteUser = (userId) => {
     if (confirm("Are you sure you want to delete this user?")) {
@@ -183,72 +268,10 @@ const deleteUser = (userId) => {
         .catch(() => alert('An unexpected error occurred.'));
     }
 };
-
-// Edit user
-const editUser = (userId) => {
-    // Fetch the user data and populate the modal
-    fetch(`crud/users/read_user.php?id=${userId}`)
-        .then(response => response.json())
-        .then(user => {
-            document.getElementById('editUserId').value = user.id;
-            document.getElementById('editFirstName').value = user.first_name;
-            document.getElementById('editLastName').value = user.last_name;
-            document.getElementById('editUsername').value = user.username;
-            document.getElementById('editEmail').value = user.email;
-            document.getElementById('editPassword').value = user.password;
-            
-            // Show the modal
-            const modal = new bootstrap.Modal(document.getElementById('editModal'));
-            modal.show();
-        })
-        .catch(error => console.error('Error fetching user data:', error));
-};
-
-// Update user
-document.getElementById('editForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    
-    fetch('crud/users/update_users.php', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("User updated successfully!");
-            fetchUsers(); // Reload users list
-            // Close the modal
-            const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-            modal.hide();
-        } else {
-            alert("Error updating user.");
-        }
-    })
-    .catch(error => console.error('Error updating user:', error));
-});
 </script>
 
 
-
 <script>
-const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-const validatePasswordStrength = (password) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
-
-const feedbackMessage = document.getElementById('feedbackMessage');
-const form = document.getElementById('registrationForm');
-const usernameField = document.getElementById('username');
-const emailField = document.getElementById('email');
-const passwordField = document.getElementById('password');
-const confirmPasswordField = document.getElementById('confirmPassword');
-
-const editFeedbackMessage = document.getElementById('editFeedbackMessage');
-const editForm = document.getElementById('editUserForm');
-const editUsernameField = document.getElementById('editUsername');
-const editEmailField = document.getElementById('editEmail');
-const editPasswordField = document.getElementById('editPassword');
-const editConfirmPasswordField = document.getElementById('editConfirmPassword');
-
 // Function to display feedback messages
 const displayFeedback = (message, type) => {
         const feedbackMessage = document.getElementById('feedbackMessage');
@@ -381,55 +404,6 @@ editConfirmPasswordField.addEventListener('input', () => {
     } else {
         editConfirmPasswordField.setCustomValidity('');
         editConfirmPasswordField.classList.remove('is-invalid');
-    }
-});
-
-// Handle form submission
-editForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (editForm.checkValidity()) {
-        const formData = new FormData(editForm);
-        fetch('crud/users/update_users.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                displayEditFeedback(data.message, 'success');
-                setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('editModal')).hide(), 2000);
-            } else {
-                displayEditFeedback(data.message, 'danger');
-            }
-        })
-        .catch(() => displayEditFeedback('An unexpected error occurred.', 'danger'));
-    } else {
-        editForm.classList.add('was-validated');
-    }
-});
-
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (form.checkValidity()) {
-        const formData = new FormData(form);
-        fetch('crud/users/create_users.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                displayFeedback(data.message, 'success');
-                form.reset();
-                setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide(), 2000);
-            } else {
-                displayFeedback(data.message, 'danger');
-            }
-        })
-        .catch(() => displayFeedback('An unexpected error occurred.', 'danger'));
-    } else {
-        form.classList.add('was-validated');
     }
 });
 </script>

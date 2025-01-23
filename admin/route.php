@@ -1,14 +1,9 @@
 <?php
 const ROUTES = [
-    'home' => 'RouteController@home',
-    'contact' => 'RouteController@contact',
-    'account' => 'RouteController@account',
-    'cart' => 'RouteController@cart',
-    'login' => 'RouteController@login',
-    'registration' => 'RouteController@register',
-    'confirmation' => 'RouteController@confirm',
-    'history' => 'RouteController@history',
+    'checkouts' => 'RouteController@checkouts',
+    'sales' => 'RouteController@sales',
     'menu' => 'RouteController@menu',
+    'users' => 'RouteController@users',
 ];
 
 // Route handler

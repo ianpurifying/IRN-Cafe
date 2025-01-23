@@ -1,209 +1,200 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link href="../modules/bootstrap/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="../modules/bootstrap/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../modules/bootstrap/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f8f8f8;
-        }
+<link href="../modules/bootstrap/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="../modules/bootstrap/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../modules/bootstrap/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+    .menu-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+        padding: 2rem;
+    }
 
-        .menu-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: start;
-            padding: 30px;
-        }
+    .menu-item {
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        width: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        .menu-item {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            overflow: hidden;
-            width: 300px;
-            position: relative;
-        }
+    .menu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
 
-        .menu-item-image {
-            height: 200px;
-            overflow: hidden;
-        }
+    .menu-item img {
+        width: 100%;
+        aspect-ratio: 16/9; /* Ensures consistent image size */
+        object-fit: cover;
+    }
 
-        .menu-item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .menu-item-body {
+        padding: 1rem;
+    }
 
-        .menu-item-details {
-            padding: 15px;
-        }
+    .menu-item-body h5 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
 
-        .category {
-            color: #777;
-            font-size: 0.9em;
-        }
-    </style>
-</head>
-<body>
-    <main class="menu-container">
+    .menu-item-body p {
+        font-size: 0.95rem;
+        color: #6c757d;
+        margin-bottom: 0.5rem;
+    }
+
+    .menu-item-body p strong {
+        color: #000;
+    }
+
+    .dropdown-menu {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .btn-outline-secondary {
+        font-size: 0.875rem;
+    }
+</style>
+<main class="container my-4">
+    <div class="row g-4"> <!-- g-4 adds spacing between columns -->
         <?php
         include('../../database/config.php');
         $sql = "SELECT * FROM menu ORDER BY id DESC";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo '<article class="menu-item">';
-                if ($row['image']) {
-                    echo '<figure class="menu-item-image">';
-                    echo '<img src="' . $row['image'] . '" alt="' . htmlspecialchars($row['menu_name']) . '">';
-                    echo '</figure>';
-                }
-                echo '<div class="menu-item-details">';
-                echo '<h3>' . htmlspecialchars($row['menu_name']) . '</h3>';
-                echo '<p>' . nl2br(htmlspecialchars($row['description'])) . '</p>';
-                echo '<p><strong>Price:</strong> ₱' . htmlspecialchars($row['price']) . '</p>'; // Added price display
-                echo '<p class="category">Category: ' . htmlspecialchars($row['category']) . '</p>';
-
-                // Bootstrap Dropdown Menu
-                echo '<div class="dropdown">';
-                echo '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton' . $row['id'] . '" data-bs-toggle="dropdown" aria-expanded="false">';
-                echo 'Actions';
-                echo '</button>';
-                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton' . $row['id'] . '">';
-                echo '<li><a class="dropdown-item edit-link" href="#" data-id="' . $row['id'] . '" data-name="' . htmlspecialchars($row['menu_name']) . '" data-description="' . htmlspecialchars($row['description']) . '" data-price="' . htmlspecialchars($row['price']) . '" data-category="' . htmlspecialchars($row['category']) . '" data-image="' . $row['image'] . '">Edit</a></li>'; // Updated to include price in Edit
-                echo '<li><a class="dropdown-item delete-link" href="#" data-id="' . $row['id'] . '">Delete</a></li>';
-                echo '</ul>';
-                echo '</div>';
-
-                echo '</div>';
-                echo '</article>';
+        ?>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center"> <!-- Centering cards for better alignment -->
+                    <div class="menu-item card shadow-sm h-100">
+                        <?php if ($row['image']) { ?>
+                            <img src="<?= $row['image'] ?>" alt="<?= htmlspecialchars($row['menu_name']) ?>">
+                        <?php } ?>
+                        <div class="menu-item-body">
+                            <h5><?= htmlspecialchars($row['menu_name']) ?></h5>
+                            <p><?= nl2br(htmlspecialchars($row['description'])) ?></p>
+                            <p><strong>Price:</strong> ₱<?= htmlspecialchars($row['price']) ?></p>
+                            <p class="text-muted"><small>Category: <?= htmlspecialchars($row['category']) ?></small></p>
+                            <div class="dropdown mt-2">
+                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item edit-link" href="#" 
+                                           data-id="<?= $row['id'] ?>" 
+                                           data-name="<?= htmlspecialchars($row['menu_name']) ?>" 
+                                           data-description="<?= htmlspecialchars($row['description']) ?>" 
+                                           data-price="<?= htmlspecialchars($row['price']) ?>" 
+                                           data-category="<?= htmlspecialchars($row['category']) ?>" 
+                                           data-image="<?= $row['image'] ?>">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item delete-link" href="#" data-id="<?= $row['id'] ?>">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <?php
             }
         } else {
-            echo '<p class="no-items">No menu items found.</p>';
+        ?>
+            <p class="text-center text-muted">No menu items found.</p>
+        <?php
         }
         $conn->close();
         ?>
-    </main>
+    </div>
+</main>
 
-    <!-- Edit Modal -->
-    <div class="modal fade" id="editMenuModal" tabindex="-1" aria-labelledby="editMenuModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editMenuModalLabel">Edit Menu Item</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="editMenuForm">
-                        <input type="hidden" id="menuId" name="id">
-                        <div class="mb-3">
-                            <label for="menuName" class="form-label">Menu Name</label>
-                            <input type="text" class="form-control" id="menuName" name="menu_name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="price" name="price" step="0.01" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="category" class="form-label">Category</label>
-                            <select class="form-select" id="category" name="category" required>
-                                <option value="chicken">Chicken</option>
-                                <option value="pork">Pork</option>
-                                <option value="dessert">Dessert</option>
-                                <option value="drinks">Drinks</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Upload Image</label>
-                            <input type="file" class="form-control" id="image" name="image">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </form>
-                </div>
+<!-- Edit Modal -->
+<div class="modal fade" id="editMenuModal" tabindex="-1" aria-labelledby="editMenuModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Menu Item</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+            <form id="editMenuForm">
+                <div class="modal-body">
+                    <input type="hidden" id="menuId" name="id">
+                    <div class="mb-3">
+                        <label for="menuName" class="form-label">Menu Name</label>
+                        <input type="text" class="form-control" id="menuName" name="menu_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" name="price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="chicken">Chicken</option>
+                            <option value="pork">Pork</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="drinks">Drinks</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Upload Image</label>
+                        <input type="file" class="form-control" id="image" name="image">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Script for Modal and Actions -->
-    <script>
+<script>
     $(document).ready(function() {
-        // Handle Edit button click
         $('.edit-link').click(function(e) {
             e.preventDefault();
-            const menuId = $(this).data('id');
-            const menuName = $(this).data('name');
-            const description = $(this).data('description');
-            const price = $(this).data('price'); // Added price
-            const category = $(this).data('category');
-            const image = $(this).data('image');
-
-            // Populate the modal fields
-            $('#menuId').val(menuId);
-            $('#menuName').val(menuName);
-            $('#description').val(description);
-            $('#price').val(price); // Populate price
-            $('#category').val(category);
-
-            // Show current image (if exists)
-            if (image) {
-                $('#currentImageContainer').html('<img src="' + image + '" class="img-fluid" alt="Current Image" />');
-            } else {
-                $('#currentImageContainer').html('<p>No image available.</p>');
-            }
-
-            // Show the modal
+            const data = $(this).data();
+            $('#menuId').val(data.id);
+            $('#menuName').val(data.name);
+            $('#description').val(data.description);
+            $('#price').val(data.price);
+            $('#category').val(data.category);
             $('#editMenuModal').modal('show');
         });
 
-        // Submit the Edit form (including the image)
+        $('.delete-link').click(function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to delete this menu item?')) {
+                $.post('crud/menu/delete_menu.php', { id: $(this).data('id') }, function(response) {
+                    alert(response);
+                    location.reload();
+                });
+            }
+        });
+
         $('#editMenuForm').submit(function(e) {
             e.preventDefault();
-            const formData = new FormData(this); // Use FormData to handle file upload
-
+            const formData = new FormData(this);
             $.ajax({
                 url: 'crud/menu/update_menu.php',
                 type: 'POST',
                 data: formData,
-                processData: false, // Prevent jQuery from processing the data
-                contentType: false, // Prevent jQuery from setting the content type
+                processData: false,
+                contentType: false,
                 success: function(response) {
                     alert(response);
                     location.reload();
-                },
-                error: function() {
-                    alert('Failed to update menu item.');
                 }
             });
         });
     });
-
-    // Handle Delete button click
-    $('.delete-link').click(function(e) {
-        e.preventDefault();
-        if (confirm('Are you sure you want to delete this menu item?')) {
-            const menuId = $(this).data('id');
-            $.ajax({
-                url: 'crud/menu/delete_menu.php', // Ensure this is the correct path for your delete script
-                type: 'POST',
-                data: { id: menuId },
-                success: function(response) {
-                    alert(response);
-                    location.reload();
-                },
-                error: function() {
-                    alert('Failed to delete menu item.');
-                }
-            });
-        }
-    });
-    </script>
-</body>
-</html>
+</script>

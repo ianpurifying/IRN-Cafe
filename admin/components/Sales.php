@@ -28,62 +28,83 @@ if ($result->num_rows > 0) {
     }
 }
 ?>
+<title>Sales Dashboard</title>
+<style>
+    .sales-con {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Dashboard</title>
-    <!-- Local Bootstrap CSS -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-        }
-        header {
-            color: black;
-            padding: 1rem;
-            text-align: center;
-        }
-        .saleDashboard {
-            margin: 2rem auto;
+    /* Header Styles */
+    .sales-con header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .sales-con header h1 {
+        color: #007bff;
+        font-size: 2.5rem;
+    }
+
+    /* Table Styles */
+    .saleDashboard table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+    }
+
+    .saleDashboard th,
+    .saleDashboard td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .saleDashboard th {
+        background-color: #007bff;
+        color: white;
+        font-size: 1.1rem;
+    }
+
+    .saleDashboard tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Sales Summary Styles */
+    .total-sales {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #28a745;
+        text-align: right;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .sales-con {
             padding: 1.5rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+
+        .saleDashboard table {
+            font-size: 0.9rem;
         }
-        
-        th, td {
-            border: 1px solid #ddd;
-            padding: 0.75rem;
-            text-align: left;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-        
+
         .total-sales {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #28a745;
+            font-size: 1.2rem;
         }
-    </style>
-</head>
-<body>
+    }
+</style>
+<div class="sales-con">
     <header>
         <h1>Sales Dashboard</h1>
     </header>
     <div class="saleDashboard">
         <h2>Sales Overview</h2>
         <?php if (!empty($completedOrders)): ?>
-            <table class="table table-bordered">
+            <table>
                 <thead>
                     <tr>
                         <th>Order Date</th>
@@ -108,12 +129,10 @@ if ($result->num_rows > 0) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <p class="total-sales">Overall Total Sales: $<?php echo number_format($totalSales, 2); ?></p>
+            <p class="total-sales">Overall Total Sales: ₱<?php echo number_format($totalSales, 2); ?></p>
         <?php else: ?>
             <p>No completed sales found.</p>
         <?php endif; ?>
         <?php $conn->close(); ?>
     </div>
-
-</body>
-</html>
+</div>

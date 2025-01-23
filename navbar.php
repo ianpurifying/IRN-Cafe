@@ -1,4 +1,3 @@
-
 <style>
     @font-face {
         font-family: "Rubik Vinyl";
@@ -106,16 +105,22 @@
             'history' => 'History',
             'cart' => '<i class="bi bi-cart"></i>',
         ];
-    
+
         foreach ($navLinks as $page => $label) {
             $activeClass = $currentPage === $page ? 'active' : '';
-            $href = "index.php?page=$page";
+            if ($page !== 'about') {  
+                $href = "index.php?page=$page";
+            } else {
+                $href = "index.php?#$page";
+            }
+
             echo "<li class='nav-item'><a class='nav-link $activeClass' href='$href'>$label</a></li>";
         }
     }
-    
+
     $currentPage = $_GET['page'] ?? 'home';
 ?>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

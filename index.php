@@ -55,7 +55,7 @@
     <main>
         <?php
             $page = $_GET['page'] ?? 'home'; // Default page
-            route($page); // Load the appropriate page
+            route($page); // Pages
         ?>
     </main>
 
