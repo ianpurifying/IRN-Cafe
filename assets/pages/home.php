@@ -122,7 +122,7 @@
 <section id="home">
     <div class="home_text">
         <h1>Welcome to IRN Cafe</h1>
-        <p>Your cozy spot for the best coffee and chill vibes. Indulge in your favorite brew and unwind with us!</p>
+        <p>A comfy place for tasty food and relaxing vibes.<br/> Enjoy and chill with us!</p>
         <button class="btn" onclick="location.href='index.php?page=menu'">ORDER NOW</button>
     </div>
 

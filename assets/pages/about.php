@@ -163,7 +163,7 @@
     <div class="team-card">
       <img src="assets/img/ian_img.jpg" alt="Ian's Image" onclick="openModal('ianModal')">
       <h3>Ian Purificacion</h3>
-      <p>He is our coder and UI designer. He ensures everything looks good and works smoothly.</p>
+      <p>He is our system administrator, ensuring systems run efficiently, designs are user-friendly, and everything works smoothly.</p>
       <div class="social-icons">
         <a href="https://www.facebook.com/ianpurifying/" target="_blank"><i class="bi bi-facebook"></i></a>
       </div>
@@ -173,7 +173,8 @@
     <div class="team-card">
       <img src="assets/img/rica_img.jpg" alt="Rica's Image" onclick="openModal('ricaModal')">
       <h3>Rica May Dando</h3>
-      <p>She is our PowerPoint expert. She's great at creating slides that capture everyone's attention.</p>
+      <p>
+      She is our cybersecurity analyst, an expert in fortifying defenses and securing vulnerabilities to ensure everything runs smoothly and stays protected.</p>
       <div class="social-icons">
         <a href="https://www.facebook.com/ricamay.dando.94" target="_blank"><i class="bi bi-facebook"></i></a>
       </div>
@@ -183,7 +184,7 @@
     <div class="team-card">
       <img src="assets/img/nicole_img.png" alt="Nicole's Image" onclick="openModal('nicoleModal')">
       <h3>Nicole Villapando</h3>
-      <p>She is our documentation specialist, ensuring every detail is recorded and presented with clarity.</p>
+      <p>She is our QA, an expert in ensuring every detail is checked for accuracy and presented with clarity, maintaining the highest standards of quality.</p>
       <div class="social-icons">
         <a href="https://www.facebook.com/nicvillapando26" target="_blank"><i class="bi bi-facebook"></i></a>
       </div>

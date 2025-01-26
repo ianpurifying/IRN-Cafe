@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     $email = $_SESSION['user']['email'];
 
     // Fetch Cart Items
-    $sql = "SELECT menu.menu_name, menu.price, cart.quantity 
+    $sql = "SELECT menu.menu_name, menu.price, menu.image, cart.quantity 
             FROM cart 
             JOIN menu ON cart.menu_id = menu.id 
             WHERE cart.email = ?";
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
 
 // Fetch cart items for display
 $email = $_SESSION['user']['email'];
-$sql = "SELECT menu.menu_name, menu.price, cart.quantity 
+$sql = "SELECT menu.menu_name, menu.price, menu.image, cart.quantity 
         FROM cart 
         JOIN menu ON cart.menu_id = menu.id 
         WHERE cart.email = ?";
@@ -84,6 +84,7 @@ $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
+
 <style>
     .cart-area {
         display: grid;
@@ -130,6 +131,24 @@ $result = $stmt->get_result();
         background-color: #f9f9f9;
     }
 
+    .image-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-item-image {
+        max-width: 70px; /* Adjust this value as needed */
+        max-height: 70px; /* Adjust this value as needed */
+        object-fit: contain;
+    }
+
+    .menu-name {
+        font-size: 0.9rem; /* Adjust this value as needed */
+        text-align: center;
+        margin-top: 5px; /* Adds some space between the image and the menu name */
+    }
+
     .cart-summary {
         text-align: right;
         margin-top: 1rem;
@@ -172,6 +191,7 @@ $result = $stmt->get_result();
         text-decoration: underline;
     }
 </style>
+
 <header>
     <h1>Your Cart</h1>
 </header>
@@ -196,16 +216,24 @@ $result = $stmt->get_result();
                         $grandTotal += $itemTotal;
                     ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row['menu_name']); ?></td>
-                            <td>$<?php echo number_format($row['price'], 2); ?></td>
+                        <td>
+    <?php if (!empty($row['image'])): ?>
+        <div class="image-container">
+            <img src="<?= htmlspecialchars($row['image']) ?>" alt="<?= htmlspecialchars($row['menu_name']) ?>" class="cart-item-image">
+            <p class="menu-name"><?= htmlspecialchars($row['menu_name']) ?></p>
+        </div>
+    <?php endif; ?>
+</td>
+
+                            <td>₱<?php echo number_format($row['price'], 2); ?></td>
                             <td><?php echo $row['quantity']; ?></td>
-                            <td>$<?php echo number_format($itemTotal, 2); ?></td>
+                            <td>₱<?php echo number_format($itemTotal, 2); ?></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
             <div class="cart-summary">
-                <p><strong>Total:</strong> $<?php echo number_format($grandTotal, 2); ?></p>
+                <p><strong>Total:</strong> ₱<?php echo number_format($grandTotal, 2); ?></p>
                 <form method="POST">
                     <button type="submit" name="checkout" class="btn">Checkout</button>
                 </form>

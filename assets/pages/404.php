@@ -6,7 +6,6 @@
     align-items: center;
     height: 100vh; /* Full height of the viewport */
     margin: 0; /* Remove default margin */
-    background-color: #f4f4f4; /* Optional, for a light background */
 }
 
 .con404 {

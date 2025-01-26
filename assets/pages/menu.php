@@ -118,6 +118,33 @@ if (isset($_SESSION['added_to_cart'])) {
         font-size: 2.5rem;
     }
 
+    
+    .back-button {
+        color: #fff;
+        background-color: #ff6600;
+        padding: 10px 10px;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .back-button i {
+        margin-right: 8px;
+    }
+
+    .back-button:hover {
+        background-color: #e65c00;
+        transform: translateX(-5px);
+    }
+
+    .back-button:active {
+        background-color: #cc5200;
+        transform: translateX(0);
+    }
+
     .category-buttons {
         display: flex;
         flex-wrap: wrap;
@@ -217,6 +244,7 @@ if (isset($_SESSION['added_to_cart'])) {
         font-size: 1.2rem;
     }
 
+
     .success-message {
         margin-top: 10px;
         background-color: #e7f9e7;
@@ -242,7 +270,13 @@ if (isset($_SESSION['added_to_cart'])) {
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
-            <h1><?= ucfirst($category) ?> Menu</h1>
+
+            <h1>
+                <a href="index.php?page=menu" class="back-button">
+                    <i class="bi bi-arrow-return-left"></i>
+                </a>
+                <?= ucfirst($category) ?> Menu
+            </h1>
 
             <div class="menu-each-cat">
                 <?php if ($result->num_rows > 0): ?>

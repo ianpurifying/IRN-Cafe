@@ -12,7 +12,6 @@ unset($_SESSION['message']);
         justify-content: center; /* Centers horizontally */
         align-items: center;     /* Centers vertically */
         height: 80vh;           /* Full viewport height */
-        background-color: #f9f9f9; /* Optional background color */
     }
 
     .con {
