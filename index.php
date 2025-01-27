@@ -53,14 +53,20 @@
 
     <!-- Main content section -->
     <main>
-        <?php
-            $page = $_GET['page'] ?? 'home'; // Default page
-            route($page); // Pages
-        ?>
+            <?php
+                $page = $_GET['page'] ?? 'home'; // Default page
+                $category = $_GET['category'] ?? ''; // Default category is empty
+
+                route($page); // Include the main content
+            ?>
     </main>
 
     <?php
-        include 'footer.php'; // Footer
+        $excluded_categories = ['chicken', 'pork', 'drinks', 'dessert']; // Conditional logic for showing/hiding footer
+
+        if (!($page === 'menu' && in_array($category, $excluded_categories))) {
+            include 'footer.php'; // Show footer if the page is not 'menu'
+        }
     ?>
 </body>
 </html>

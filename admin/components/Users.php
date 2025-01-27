@@ -187,6 +187,11 @@ const fetchUsers = () => {
             usersTableBody.innerHTML = ''; // Clear existing rows
 
             users.forEach(user => {
+                // Exclude admin user
+                if (user.username === 'admin' || user.email === 'admin@irncafe.com') {
+                    return; 
+                }
+
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${user.id}</td>
@@ -207,6 +212,7 @@ const fetchUsers = () => {
         .catch(error => console.error('Error fetching users:', error));
 };
 document.addEventListener('DOMContentLoaded', fetchUsers);
+
 
 // Edit and Update user
 const editUser = (userId) => {

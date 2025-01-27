@@ -88,16 +88,15 @@ $result = $stmt->get_result();
 <style>
     .cart-area {
         display: grid;
-        height: 78vh;
     }
 
-    header {
+    .cart-zone header {
         color: black;
         padding: 1rem 2rem;
         text-align: center;
     }
 
-    h1 {
+    .cart-zone header h1 {
         margin: 0;
         font-size: 1.8rem;
     }
@@ -173,79 +172,67 @@ $result = $stmt->get_result();
     .btn:hover {
         background-color: #218838;
     }
-
-    footer {
-        text-align: center;
-        padding: 1rem 0;
-        background-color: #f2f2f2;
-        color: #666;
-        margin-top: 2rem;
-    }
-
-    a {
-        color: #007bff;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
 </style>
-
-<header>
-    <h1>Your Cart</h1>
-</header>
-<div class="cart-area">
-<main>
-    <section class="cart-con">
-        <?php if ($result->num_rows > 0): ?>
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                    $grandTotal = 0;
-                    while ($row = $result->fetch_assoc()): 
-                        $itemTotal = $row['price'] * $row['quantity'];
-                        $grandTotal += $itemTotal;
-                    ?>
+<div class="cart-zone">
+    <header>
+        <h1>Your Cart</h1>
+    </header>
+    <div class="cart-area">
+    <main>
+        <section class="cart-con">
+            <?php if ($result->num_rows > 0): ?>
+                <table class="cart-table">
+                    <thead>
                         <tr>
-                        <td>
-    <?php if (!empty($row['image'])): ?>
-        <div class="image-container">
-            <img src="<?= htmlspecialchars($row['image']) ?>" alt="<?= htmlspecialchars($row['menu_name']) ?>" class="cart-item-image">
-            <p class="menu-name"><?= htmlspecialchars($row['menu_name']) ?></p>
-        </div>
-    <?php endif; ?>
-</td>
-
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php 
+                        $grandTotal = 0;
+                        while ($row = $result->fetch_assoc()): 
+                            $itemTotal = $row['price'] * $row['quantity'];
+                            $grandTotal += $itemTotal;
+                        ?>
+                        <tr>
+                            <td>
+                                <?php if (!empty($row['image'])): ?>
+                                    <div class="image-container">
+                                        <img src="<?= htmlspecialchars($row['image']) ?>" alt="<?= htmlspecialchars($row['menu_name']) ?>" class="cart-item-image">
+                                        <p class="menu-name"><?= htmlspecialchars($row['menu_name']) ?></p>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                             <td>₱<?php echo number_format($row['price'], 2); ?></td>
-                            <td><?php echo $row['quantity']; ?></td>
+                            <td>
+                                <form method="POST" action="assets/handlers/update_cart.php" style="display: flex; align-items: center; gap: 8px;">
+                                    <button type="submit" name="decrease" value="<?= htmlspecialchars($row['menu_name']) ?>" style="border: none; background: none; font-size: 1.2rem; cursor: pointer;">-</button>
+                                    <span><?= $row['quantity']; ?></span>
+                                    <button type="submit" name="increase" value="<?= htmlspecialchars($row['menu_name']) ?>" style="border: none; background: none; font-size: 1.2rem; cursor: pointer;">+</button>
+                                </form>
+                            </td>
                             <td>₱<?php echo number_format($itemTotal, 2); ?></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
-            </table>
-            <div class="cart-summary">
-                <p><strong>Total:</strong> ₱<?php echo number_format($grandTotal, 2); ?></p>
-                <form method="POST">
-                    <button type="submit" name="checkout" class="btn">Checkout</button>
-                </form>
-            </div>
 
-        <?php else: ?>
-            <p>Your cart is empty. <a href="index.php">Start shopping</a>.</p>
-        <?php endif; ?>
-        <?php 
-        $stmt->close();
-        $conn->close();
-        ?>
-    </section>
-</main>
+                </table>
+                <div class="cart-summary">
+                    <p><strong>Total:</strong> ₱<?php echo number_format($grandTotal, 2); ?></p>
+                    <form method="POST">
+                        <button type="submit" name="checkout" class="btn">Checkout</button>
+                    </form>
+                </div>
+            <?php else: ?>
+                <p>Your cart is empty. <a href="index.php">Start shopping</a>.</p>
+            <?php endif; ?>
+            <?php 
+            $stmt->close();
+            $conn->close();
+            ?>
+        </section>
+    </main>
 </div>

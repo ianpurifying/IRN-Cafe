@@ -174,7 +174,7 @@
       <img src="assets/img/rica_img.jpg" alt="Rica's Image" onclick="openModal('ricaModal')">
       <h3>Rica May Dando</h3>
       <p>
-      She is our cybersecurity analyst, an expert in fortifying defenses and securing vulnerabilities to ensure everything runs smoothly and stays protected.</p>
+      She is our cybersecurity analyst, an expert in fortifying defenses and securing vulnerabilities to ensure everything is impenetrable.</p>
       <div class="social-icons">
         <a href="https://www.facebook.com/ricamay.dando.94" target="_blank"><i class="bi bi-facebook"></i></a>
       </div>
@@ -184,7 +184,7 @@
     <div class="team-card">
       <img src="assets/img/nicole_img.png" alt="Nicole's Image" onclick="openModal('nicoleModal')">
       <h3>Nicole Villapando</h3>
-      <p>She is our QA, an expert in ensuring every detail is checked for accuracy and presented with clarity, maintaining the highest standards of quality.</p>
+      <p>She is our QA, an expert in ensuring every detail is accurate and presented with clarity, maintaining the highest standards of quality.</p>
       <div class="social-icons">
         <a href="https://www.facebook.com/nicvillapando26" target="_blank"><i class="bi bi-facebook"></i></a>
       </div>

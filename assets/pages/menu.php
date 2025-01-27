@@ -103,22 +103,22 @@ if (isset($_SESSION['added_to_cart'])) {
 </script>
 
 <style>
+
     .menu-con {
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 20px;
-        height: 88vh;
+        height: 58vh;
     }
-
-    .menu-area h1 {
+    
+    .menu-con h1 {
         text-align: center;
         padding: 20px 0;
         margin: 0;
         font-size: 2.5rem;
     }
 
-    
     .back-button {
         color: #fff;
         background-color: #ff6600;
@@ -255,7 +255,6 @@ if (isset($_SESSION['added_to_cart'])) {
         font-size: 1.2rem;
     }
 </style>
-
 <div class="menu-area">
     <main class="menu-con">
         <?php if (empty($category)): ?>
@@ -304,8 +303,7 @@ if (isset($_SESSION['added_to_cart'])) {
             </div>
         <?php endif; ?>
     </main>
-</div>
-
+    </div>
 <?php
 $conn->close();
 ?>

@@ -25,7 +25,7 @@ $result = $stmt->get_result();
 ?>
 <style>
 
-    header {
+    .order-zone header {
         background-color: #4CAF50;
         color: white;
         padding: 1rem 0;
@@ -33,7 +33,7 @@ $result = $stmt->get_result();
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    header h1 {
+    .order-zone header h1 {
         margin: 0;
         font-size: 1.8rem;
     }
@@ -117,41 +117,42 @@ $result = $stmt->get_result();
         text-decoration: underline;
     }
 </style>
-<header>
-    <h1>Order History</h1>
-</header>
-<div class="history-area">
-    <div class="historyBox">
-        <?php if ($result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="order">
-                    <h3>Order Date: <?php echo date("F d, Y h:i A", strtotime($row['created_at'])); ?></h3>
-                    <p><strong>Total Amount:</strong> $<?php echo number_format($row['total_amount'], 2); ?></p>
-                    <p><strong>Status:</strong> <span class="status <?php echo htmlspecialchars($row['status']); ?>"><?php echo htmlspecialchars($row['status']); ?></span></p>
-                    <div class="order-details">
-                        <p><strong>Order Details:</strong></p>
-                        <?php
-                        $orderDetails = json_decode($row['order_details'], true);
-                        foreach ($orderDetails as $item): ?>
-                            <p>
-                                <?php echo htmlspecialchars($item['item']); ?> 
-                                x <?php echo $item['quantity']; ?> 
-                                @ $<?php echo number_format($item['price'], 2); ?> 
-                                = $<?php echo number_format($item['total'], 2); ?>
-                            </p>
-                        <?php endforeach; ?>
+<div class="order-zone">
+    <header>
+        <h1>Order History</h1>
+    </header>
+    <div class="history-area">
+        <div class="historyBox">
+            <?php if ($result->num_rows > 0): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="order">
+                        <h3>Order Date: <?php echo date("F d, Y h:i A", strtotime($row['created_at'])); ?></h3>
+                        <p><strong>Total Amount:</strong> ₱<?php echo number_format($row['total_amount'], 2); ?></p>
+                        <p><strong>Status:</strong> <span class="status <?php echo htmlspecialchars($row['status']); ?>"><?php echo htmlspecialchars($row['status']); ?></span></p>
+                        <div class="order-details">
+                            <p><strong>Order Details:</strong></p>
+                            <?php
+                            $orderDetails = json_decode($row['order_details'], true);
+                            foreach ($orderDetails as $item): ?>
+                                <p>
+                                    <?php echo htmlspecialchars($item['item']); ?> 
+                                    x <?php echo $item['quantity']; ?> 
+                                    @ ₱<?php echo number_format($item['price'], 2); ?> 
+                                    = ₱<?php echo number_format($item['total'], 2); ?>
+                                </p>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <div class="no-history">
+                    <p>No order history available. <a href="index.php">Place your first order!</a></p>
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <div class="no-history">
-                <p>No order history available. <a href="index.php">Place your first order!</a></p>
-            </div>
-        <?php endif; ?>
-        <?php 
-        $stmt->close();
-        $conn->close();
-        ?>
+            <?php endif; ?>
+            <?php 
+            $stmt->close();
+            $conn->close();
+            ?>
+        </div>
     </div>
 </div>
-
