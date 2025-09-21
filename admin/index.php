@@ -3,7 +3,7 @@
         session_start();
     }
     
-    if (!isset($_SESSION['user']) || $_SESSION['user']['username'] !== 'admin' || $_SESSION['user']['email'] !== 'admin@irncafe.com') {
+    if (!isset($_SESSION['user']) || $_SESSION['user']['username'] !== 'admin' || $_SESSION['user']['email'] !== 'admin@gmail.com') {
         echo "<script>window.location.href = '../index.php?page=login';</script>";
         exit;
     }

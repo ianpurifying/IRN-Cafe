@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require 'config.php'; // Database connection
 
-if ($_SESSION['user']['username'] === 'admin' && $_SESSION['user']['email'] === 'admin@irncafe.com') {
+if ($_SESSION['user']['username'] === 'admin' && $_SESSION['user']['email'] === 'admin@gmail.com') {
     echo "<script>window.location.href = 'admin/';</script>";
     exit;
 }

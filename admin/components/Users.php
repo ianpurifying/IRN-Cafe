@@ -4,7 +4,7 @@
     }
 
     // Check if the user is an admin (replace with your admin verification logic)
-    if (!isset($_SESSION['user']) || $_SESSION['user']['username'] !== 'admin' || $_SESSION['user']['email'] !== 'admin@irncafe.com') {
+    if (!isset($_SESSION['user']) || $_SESSION['user']['username'] !== 'admin' || $_SESSION['user']['email'] !== 'admin@gmail.com') {
         echo "<script>window.location.href = '../index.php?page=login';</script>";
         exit;
     }
@@ -188,7 +188,7 @@ const fetchUsers = () => {
 
             users.forEach(user => {
                 // Exclude admin user
-                if (user.username === 'admin' || user.email === 'admin@irncafe.com') {
+                if (user.username === 'admin' || user.email === 'admin@gmail.com') {
                     return; 
                 }
 

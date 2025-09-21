@@ -31,7 +31,7 @@ if (isset($_POST["submit"])) {
             ];
         
             // Check if admin
-            if ($user['username'] === 'admin' && $user['email'] === 'admin@irncafe.com') {
+            if ($user['username'] === 'admin' && $user['email'] === 'admin@gmail.com') {
                 echo "<script>window.location.href = 'admin/index.php';</script>";
             } else {
                 echo "<script>window.location.href = 'index.php?page=home';</script>";
