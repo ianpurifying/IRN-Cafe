@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Start the session only if not already started
+    session_start(); 
 }
 
 session_unset();
