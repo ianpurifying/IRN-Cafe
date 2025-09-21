@@ -4,8 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 session_unset();
-
-// Destroy the session
 session_destroy();
 
 echo "<script>window.location.href = 'index.php?page=login';</script>";
